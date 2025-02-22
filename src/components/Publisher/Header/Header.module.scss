@@ -1,0 +1,25 @@
+.header {
+  background: #ffffff;
+  border-bottom: 2px solid #ddd;
+  font-family: "Inter", sans-serif;
+  width: 100%;
+}
+
+.welcome {
+  font-size: 24px !important;
+  font-weight: bold;
+  margin-left: 2%;
+}
+
+.search {
+  display: flex;
+  align-items: center;
+  width: 300px;
+}
+
+.profileImage {
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+  border: 2px solid #ccc;
+}

@@ -1,17 +1,27 @@
-import './App.css';
-import AuthPage from './pages/Auth/AuthPage';
-import CampaignList from './pages/CampaignList/CampaignList';
-import HomePage from './pages/Home/HomePage';
-import ProfilePublisher from './pages/ProfilePublisher/ProfilePublisher';
+import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { publisherRoutes } from "./routes/publisherRoutes";
+import { publicRoutes } from "./routes";
 
-function App() {
+const App = () => {
   return (
-      // <AuthPage/>
-      <HomePage/>
-      // <ProfilePublisher/>
-      // <CampaignList/>
-
+    <Router>
+      <Routes>
+        {publicRoutes.map((route, index) => (
+          <Route key={index} path={route.path} element={route.element} />
+        ))}
+        {/* Publisher Routes (Có Layout) */}
+        {publisherRoutes.map((route, index) => (
+          <Route key={index} path={route.path} element={route.element}>
+            {route.children &&
+              route.children.map((child, idx) => (
+                <Route key={idx} path={child.path} element={child.element} />
+              ))}
+          </Route>
+        ))}
+      </Routes>
+    </Router>
   );
-}
+};
 
 export default App;
