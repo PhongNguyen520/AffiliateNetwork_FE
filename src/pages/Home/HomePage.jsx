@@ -3,7 +3,7 @@ import classNames from "classnames/bind";
 import styles from "./HomePage.module.scss";
 import images from "../../assets/images";
 import Marquee from "react-fast-marquee";
-import Header from "../../components/Header";
+import Header from "../../components/HeaderPublisher/Header";
 const cx = classNames.bind(styles);
 
 function HomePage() {
