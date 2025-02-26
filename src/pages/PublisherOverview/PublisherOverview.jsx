@@ -64,7 +64,7 @@ const PublisherOverview = () => {
 
     return (
         <div className={styles.dashboard}>
-            <h2 className={styles.title}>Publisher Overview</h2>
+            {/* <h2 className={styles.title}>Publisher Overview</h2> */}
             <div className={styles.exportButton}>
                 <button>
                 <i class="bi bi-cloud-download-fill"></i>

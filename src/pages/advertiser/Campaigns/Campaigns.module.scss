@@ -1,0 +1,97 @@
+.campaigns-container {
+    padding: 24px;
+    min-height: 100vh;
+  
+    .campaigns-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 24px;
+  
+      h1 {
+        font-size: 24px;
+        font-weight: 600;
+        color: #333;
+        margin: 0;
+      }
+  
+      .ant-btn {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-weight: 500;
+      }
+    }
+  
+    .campaigns-table {
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+  
+      .ant-table-thead > tr > th {
+        background-color: #fafafa;
+        font-weight: 600;
+        color: #333;
+      }
+  
+      .ant-table-tbody > tr > td {
+        color: #555;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        img {
+            width: 50px;
+            height: 50px;
+            border-radius: 4px;
+            object-fit: cover;
+          }
+      }
+   
+      .ant-tag {
+        font-weight: 500;
+        border-radius: 4px;
+      }
+  
+      .ant-dropdown-trigger {
+        padding: 0 8px;
+      }
+    }
+  
+    .ant-modal {
+      .ant-modal-header {
+        border-bottom: 1px solid #e8e8e8;
+      }
+  
+      .ant-modal-title {
+        font-size: 18px;
+        font-weight: 600;
+        color: #333;
+      }
+  
+      .ant-modal-body {
+        padding: 24px;
+  
+        .ant-form-item-label > label {
+          font-weight: 500;
+          color: #333;
+        }
+  
+        .ant-input,
+        .ant-input-number,
+        .ant-picker,
+        .ant-select-selector {
+          border-radius: 4px;
+          border: 1px solid #d9d9d9;
+        }
+  
+        .ant-btn {
+          width: 100%;
+          margin-top: 16px;
+        }
+      }
+    }
+  }
+
+
+  

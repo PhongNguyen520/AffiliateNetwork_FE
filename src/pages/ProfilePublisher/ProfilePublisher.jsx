@@ -24,7 +24,7 @@ const cx = classNames.bind(styles);
 const mockPublisher = {
   userName: "johnsmith",
   fullName: "Nguyen Thanh Phong",
-  avatar: "https://scontent.fsgn2-9.fna.fbcdn.net/v/t39.30808-6/461184877_1080201167130354_934555959225370992_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=6ee11a&_nc_eui2=AeF1OYvztxyUATf6-j1khSRlN4WJTXKIg_s3hYlNcoiD-1-BUvSvFlmcpDo5SPWbJmXWkiNpaIFZ26YJ567WS7HU&_nc_ohc=vGlYXRnZShsQ7kNvgGiZI4E&_nc_oc=AdjqmkJ0yd-uRwIz2-kR0NbnERDLkZeDWAU-n1djnj76gFX0vik2iamjrYvhRuzMIow&_nc_zt=23&_nc_ht=scontent.fsgn2-9.fna&_nc_gid=AkMvA5rUTVrVRQ_FAtG3lEx&oh=00_AYB-MFHUQlcses0QjC-dIDTT6TzEcKPuqOB6AhTW8TnC5w&oe=678995F0",
+  avatar: "https://media-cdn-v2.laodong.vn/storage/newsportal/2024/8/6/1376839/Shin3.jpg",
   email: "nguyenphong23042001@gmail.com",
   phoneNumber: "0378977634",
   address: "New York, USA",
