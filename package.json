@@ -12,6 +12,7 @@
     "@testing-library/user-event": "^13.2.1",
     "antd": "^5.23.2",
     "apexcharts": "^4.5.0",
+    "bootstrap": "^5.3.3",
     "bootstrap-icons": "^1.11.3",
     "classnames": "^2.5.1",
     "dayjs": "^1.11.13",
@@ -29,6 +30,7 @@
     "react-slick": "^0.30.3",
     "recharts": "^2.15.1",
     "sass": "^1.83.1",
+    "scheduler": "^0.25.0",
     "slick-carousel": "^1.8.1",
     "web-vitals": "^2.1.0"
   },

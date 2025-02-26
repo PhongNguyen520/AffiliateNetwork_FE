@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+
 import classNames from "classnames/bind";
 import styles from "./HomePage.module.scss";
 import images from "../../assets/images";

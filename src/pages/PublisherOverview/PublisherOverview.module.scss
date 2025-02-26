@@ -1,0 +1,140 @@
+.dashboard {
+  padding: 20px;
+  font-family: "Inter", sans-serif;
+}
+
+.title {
+  font-size: 60px;
+  font-weight: bold;
+  color: #3a3a3a;
+  color: #60B2B7;
+}
+
+.stats {
+  display: flex;
+  gap: 15px;
+}
+
+.card {
+  flex: 1;
+  width: 300px;
+  padding: 15px;
+  border-radius: 12px;
+  box-shadow: 3px 2px 4px 4px rgba(0, 0, 0, 0.1);
+  font-size: 16px;
+  width: 100px;
+  color: #333;
+  font-weight: bold;
+}
+
+.cardTitle {
+  font-size: 18px;
+  color: #A9A8A8;
+}
+
+.cardValue {
+  font-size: 32px;
+  font-weight: bolder;
+}
+
+.cardChange {
+  font-size: 18px;
+}
+
+.line {
+  border-radius: 12px;
+  width: 6px;
+  height: 70px;
+
+}
+.exportButton{
+  display: flex;
+  justify-content: end;
+  margin-bottom: 2%;
+}
+.exportButton button{
+border-radius: 8px;
+background-color: #53A8AD;
+color: white;
+border: none;
+padding: 0.5% 1% ;
+display: flex;
+align-items: center;
+gap: 0.5rem;
+}
+.chartContainer {
+  padding: 30px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.chartHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.timeToggle{
+  background-color: #F8F8FF;
+  padding: 1%;
+  border-radius: 15px;
+}
+.timeToggle button {
+  border: none;
+  padding: 8px 15px;
+  margin: 0 5px;
+  cursor: pointer;
+  background: #F8F8FF;
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+.timeToggle .active {
+  background: #53A8AD;
+  color: white;
+}
+
+.legend {
+  display: flex;
+  justify-content: flex-start;
+  gap: 15px;
+  margin-bottom: 10px;
+}
+
+.legendItem {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  padding: 5px 10px;
+  border-radius: 8px;
+  background: #f8f9fa;
+  border: 1px solid #ddd;
+}
+
+.revenueDot,
+.commissionDot,
+.earningsDot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  margin-right: 5px;
+}
+
+.revenueDot {
+  background: #573BFF;
+}
+
+.commissionDot {
+  background: #FF3B3B;
+}
+
+.earningsDot {
+  background: #00C49F;
+}
+
+.rowNote {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 4%;
+}
