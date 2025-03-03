@@ -26,6 +26,7 @@ import dayjs from "dayjs";
 import classNames from "classnames/bind";
 import styles from "./Campaigns.module.scss";
 import { FaArrowRight } from "react-icons/fa";
+import { NavLink } from "react-router-dom";
 
 const cx = classNames.bind(styles);
 const { RangePicker } = DatePicker;
@@ -182,6 +183,7 @@ const Campaigns = () => {
     },
   ]);
 
+
   const showModal = (campaign = null) => {
     if (campaign) {
       setIsEditMode(true);
@@ -208,22 +210,22 @@ const Campaigns = () => {
     const campaignData = {
       ...values,
       key: isEditMode ? currentCampaign.key : String(campaigns.length + 1),
-      startDate: values.dateRange[0].format('YYYY-MM-DD'),
-      endDate: values.dateRange[1].format('YYYY-MM-DD'),
+      startDate: values.dateRange[0].format("YYYY-MM-DD"),
+      endDate: values.dateRange[1].format("YYYY-MM-DD"),
       status: isEditMode ? currentCampaign.status : "Sắp bắt đầu",
-      image: values.image, 
+      image: values.image,
     };
-  
+
     if (isEditMode) {
-      setCampaigns(campaigns.map(c => 
-        c.key === campaignData.key ? campaignData : c
-      ));
+      setCampaigns(
+        campaigns.map((c) => (c.key === campaignData.key ? campaignData : c))
+      );
       message.success("Cập nhật chiến dịch thành công!");
     } else {
       setCampaigns([...campaigns, campaignData]);
       message.success("Tạo chiến dịch thành công!");
     }
-  
+
     handleCancel();
   };
 
@@ -321,9 +323,11 @@ const Campaigns = () => {
               >
                 Chỉnh Sửa
               </Menu.Item>
-              <Menu.Item key="view" icon={<EyeOutlined />}>
-                Chi Tiết
-              </Menu.Item>
+              <NavLink to={"/campaigns/detail"}>
+                <Menu.Item key="view" icon={<EyeOutlined />}>
+                  Chi Tiết
+                </Menu.Item>
+              </NavLink>
               {record.status === "Đang chạy" ? (
                 <Menu.Item
                   key="stop"
