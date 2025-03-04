@@ -11,6 +11,7 @@ import "./App.css";
 // import Campaigns from "./pages/advertiser/Campaigns/Campaigns";
 // import Overview from "./pages/admin/Overview/Overview";
 import { campaignsRoutes } from "./routes/campaignsRoutes";
+import { publisherConversionRoutes } from "./routes/publisherConversionRoutes" 
 
 const App = () => {
   return (
@@ -45,7 +46,11 @@ const App = () => {
               ))}
           </Route>
         ))}
+        {publisherConversionRoutes.map((route, index) => (
+          <Route key={index} path={route.path} element={route.element} />
+        ))}
       </Routes>
+      
     </Router>
   );
 };
