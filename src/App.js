@@ -1,14 +1,6 @@
 import React, { Fragment } from "react";
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import { publisherRoutes } from "./routes/publisherRoutes";
-import "./App.css";
-import AdvertiserLayout from "./components/AdvertiserLayout/AdvertiserLayout";
-import AuthPage from "./pages/Auth/AuthPage";
-import CampaignList from "./pages/CampaignList/CampaignList";
-import HomePage from "./pages/Home/HomePage";
-import ProfilePublisher from "./pages/ProfilePublisher/ProfilePublisher";
-import Campaigns from "./pages/advertiser/Campaigns/Campaigns";
-import Overview from "./pages/admin/Overview/Overview";
 import { adminRoutes, advertiserRoutes, publicRoutes } from "./routes";
 import config from "./config";
 import RequireAuth from "./pages/requireAuth/RequireAuth";

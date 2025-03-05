@@ -32,157 +32,148 @@ const cx = classNames.bind(styles);
 const { RangePicker } = DatePicker;
 const { Option } = Select;
 
+
 const Campaigns = () => {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [isEditMode, setIsEditMode] = useState(false);
   const [currentCampaign, setCurrentCampaign] = useState(null);
   const [form] = Form.useForm();
+
   const [campaigns, setCampaigns] = useState([
     {
-      key: "1",
-      name: "Summer Sale Campaign",
-      description: "Chiến dịch quảng cáo sản phẩm mùa hè",
-      startDate: "2024-06-01",
-      endDate: "2024-08-31",
-      status: "Đang chạy",
-      budget: 5000,
+      id: "1",
+      websiteLink: "https://example.com",
+      campaignName: "Summer Sale Campaign",
+      introduction: "Summer product advertising campaign",
+      description: "Summer product advertising campaign with attractive offers",
+      policy: "Applicable policies and terms",
+      image: "https://placehold.co/200",
+      enrollCount: 150,
       conversionRate: 2.5,
-      commissionType: "CPA",
-      affiliateNetworks: ["Sendo", "Lazada"],
-      image: "https://placehold.co/200",
+      status: "Running",
+      createDate: "2024-06-01",
+      endDate: "2024-08-31",
+      deposit: 5000,
+      targetCustomer: "Customers aged 18-35",
+      zone: "Nationwide",
+      campaignCategory: "Fashion",
+      payoutMethod: "CPA",
     },
     {
-      key: "2",
-      name: "Electronics Promo",
-      description: "Chiến dịch điện tử cuối năm",
-      startDate: "2024-11-15",
-      endDate: "2024-12-31",
-      status: "Sắp bắt đầu",
-      budget: 10000,
-      conversionRate: 1.8,
-      commissionType: "Revenue Share",
-      affiliateNetworks: ["Tiki", "Shopee"],
+      id: "2",
+      websiteLink: "https://example.com",
+      campaignName: "Electronics Promo",
+      introduction: "Year-end electronics campaign",
+      description: "Year-end electronics campaign with attractive offers",
+      policy: "Applicable policies and terms",
       image: "https://placehold.co/200",
+      enrollCount: 200,
+      conversionRate: 1.8,
+      status: "Upcoming",
+      createDate: "2024-11-15",
+      endDate: "2024-12-31",
+      deposit: 10000,
+      targetCustomer: "Customers aged 25-45",
+      zone: "Southern Region",
+      campaignCategory: "Electronics",
+      payoutMethod: "Revenue Share",
     },
     {
-      key: "2",
-      name: "Electronics Promo",
-      description: "Chiến dịch điện tử cuối năm",
-      startDate: "2024-11-15",
-      endDate: "2024-12-31",
-      status: "Sắp bắt đầu",
-      budget: 10000,
-      conversionRate: 1.8,
-      commissionType: "Revenue Share",
-      affiliateNetworks: ["Tiki", "Shopee"],
+      id: "3",
+      websiteLink: "https://example.com",
+      campaignName: "Back to School",
+      introduction: "Back to school promotion campaign",
+      description: "Promotion campaign for school supplies and accessories",
+      policy: "Applicable policies and terms",
       image: "https://placehold.co/200",
+      enrollCount: 300,
+      conversionRate: 3.2,
+      status: "Running",
+      createDate: "2024-08-01",
+      endDate: "2024-09-15",
+      deposit: 7500,
+      targetCustomer: "Students and parents",
+      zone: "Nationwide",
+      campaignCategory: "Education",
+      payoutMethod: "CPA",
     },
     {
-      key: "2",
-      name: "Electronics Promo",
-      description: "Chiến dịch điện tử cuối năm",
-      startDate: "2024-11-15",
-      endDate: "2024-12-31",
-      status: "Sắp bắt đầu",
-      budget: 10000,
-      conversionRate: 1.8,
-      commissionType: "Revenue Share",
-      affiliateNetworks: ["Tiki", "Shopee"],
+      id: "4",
+      websiteLink: "https://example.com",
+      campaignName: "Holiday Special",
+      introduction: "Holiday season special offers",
+      description: "Special offers for the holiday season",
+      policy: "Applicable policies and terms",
       image: "https://placehold.co/200",
+      enrollCount: 250,
+      conversionRate: 2.0,
+      status: "Upcoming",
+      createDate: "2024-12-01",
+      endDate: "2024-12-25",
+      deposit: 12000,
+      targetCustomer: "All customers",
+      zone: "Nationwide",
+      campaignCategory: "Holiday",
+      payoutMethod: "Revenue Share",
     },
     {
-      key: "2",
-      name: "Electronics Promo",
-      description: "Chiến dịch điện tử cuối năm",
-      startDate: "2024-11-15",
-      endDate: "2024-12-31",
-      status: "Sắp bắt đầu",
-      budget: 10000,
-      conversionRate: 1.8,
-      commissionType: "Revenue Share",
-      affiliateNetworks: ["Tiki", "Shopee"],
+      id: "5",
+      websiteLink: "https://example.com",
+      campaignName: "Fitness Challenge",
+      introduction: "New year fitness challenge",
+      description: "Join our fitness challenge to kickstart your new year",
+      policy: "Applicable policies and terms",
       image: "https://placehold.co/200",
+      enrollCount: 180,
+      conversionRate: 2.8,
+      status: "Running",
+      createDate: "2024-01-01",
+      endDate: "2024-01-31",
+      deposit: 6000,
+      targetCustomer: "Fitness enthusiasts",
+      zone: "Nationwide",
+      campaignCategory: "Health & Fitness",
+      payoutMethod: "CPA",
     },
     {
-      key: "2",
-      name: "Electronics Promo",
-      description: "Chiến dịch điện tử cuối năm",
-      startDate: "2024-11-15",
-      endDate: "2024-12-31",
-      status: "Sắp bắt đầu",
-      budget: 10000,
-      conversionRate: 1.8,
-      commissionType: "Revenue Share",
-      affiliateNetworks: ["Tiki", "Shopee"],
+      id: "6",
+      websiteLink: "https://example.com",
+      campaignName: "Tech Gadgets Launch",
+      introduction: "Launch of new tech gadgets",
+      description: "Be the first to experience our new tech gadgets",
+      policy: "Applicable policies and terms",
       image: "https://placehold.co/200",
+      enrollCount: 220,
+      conversionRate: 2.3,
+      status: "Running",
+      createDate: "2024-03-01",
+      endDate: "2024-03-31",
+      deposit: 8000,
+      targetCustomer: "Tech enthusiasts",
+      zone: "Nationwide",
+      campaignCategory: "Technology",
+      payoutMethod: "Revenue Share",
     },
     {
-      key: "2",
-      name: "Electronics Promo",
-      description: "Chiến dịch điện tử cuối năm",
-      startDate: "2024-11-15",
-      endDate: "2024-12-31",
-      status: "Sắp bắt đầu",
-      budget: 10000,
-      conversionRate: 1.8,
-      commissionType: "Revenue Share",
-      affiliateNetworks: ["Tiki", "Shopee"],
+      id: "7",
+      websiteLink: "https://example.com",
+      campaignName: "Spring Fashion",
+      introduction: "Spring fashion collection launch",
+      description: "Discover our new spring fashion collection",
+      policy: "Applicable policies and terms",
       image: "https://placehold.co/200",
-    },
-    {
-      key: "2",
-      name: "Electronics Promo",
-      description: "Chiến dịch điện tử cuối năm",
-      startDate: "2024-11-15",
-      endDate: "2024-12-31",
-      status: "Sắp bắt đầu",
-      budget: 10000,
-      conversionRate: 1.8,
-      commissionType: "Revenue Share",
-      affiliateNetworks: ["Tiki", "Shopee"],
-      image: "https://placehold.co/200",
-    },
-    {
-      key: "2",
-      name: "Electronics Promo",
-      description: "Chiến dịch điện tử cuối năm",
-      startDate: "2024-11-15",
-      endDate: "2024-12-31",
-      status: "Sắp bắt đầu",
-      budget: 10000,
-      conversionRate: 1.8,
-      commissionType: "Revenue Share",
-      affiliateNetworks: ["Tiki", "Shopee"],
-      image: "https://placehold.co/200",
-    },
-    {
-      key: "2",
-      name: "Electronics Promo",
-      description: "Chiến dịch điện tử cuối năm",
-      startDate: "2024-11-15",
-      endDate: "2024-12-31",
-      status: "Sắp bắt đầu",
-      budget: 10000,
-      conversionRate: 1.8,
-      commissionType: "Revenue Share",
-      affiliateNetworks: ["Tiki", "Shopee"],
-      image: "https://placehold.co/200",
-    },
-    {
-      key: "2",
-      name: "Electronics Promo",
-      description: "Chiến dịch điện tử cuối năm",
-      startDate: "2024-11-15",
-      endDate: "2024-12-31",
-      status: "Sắp bắt đầu",
-      budget: 10000,
-      conversionRate: 1.8,
-      commissionType: "Revenue Share",
-      affiliateNetworks: ["Tiki", "Shopee"],
-      image: "https://placehold.co/200",
+      enrollCount: 170,
+      conversionRate: 2.1,
+      status: "Upcoming",
+      createDate: "2024-02-15",
+      endDate: "2024-03-15",
+      deposit: 7000,
+      targetCustomer: "Fashion enthusiasts",
+      zone: "Nationwide",
+      campaignCategory: "Fashion",
+      payoutMethod: "CPA",
     },
   ]);
-
 
   const showModal = (campaign = null) => {
     if (campaign) {
@@ -190,7 +181,7 @@ const Campaigns = () => {
       setCurrentCampaign(campaign);
       form.setFieldsValue({
         ...campaign,
-        dateRange: [dayjs(campaign.startDate), dayjs(campaign.endDate)],
+        dateRange: [dayjs(campaign.createDate), dayjs(campaign.endDate)],
       });
     } else {
       setIsEditMode(false);
@@ -209,151 +200,136 @@ const Campaigns = () => {
   const handleSubmit = (values) => {
     const campaignData = {
       ...values,
-      key: isEditMode ? currentCampaign.key : String(campaigns.length + 1),
-      startDate: values.dateRange[0].format("YYYY-MM-DD"),
+      id: isEditMode ? currentCampaign.id : String(campaigns.length + 1),
+      createDate: values.dateRange[0].format("YYYY-MM-DD"),
       endDate: values.dateRange[1].format("YYYY-MM-DD"),
-      status: isEditMode ? currentCampaign.status : "Sắp bắt đầu",
+      status: isEditMode ? currentCampaign.status : "Upcoming",
       image: values.image,
     };
 
     if (isEditMode) {
-      setCampaigns(
-        campaigns.map((c) => (c.key === campaignData.key ? campaignData : c))
-      );
-      message.success("Cập nhật chiến dịch thành công!");
+      setCampaigns(campaigns.map((c) => (c.id === campaignData.id ? campaignData : c)));
+      message.success("Campaign updated successfully!");
     } else {
       setCampaigns([...campaigns, campaignData]);
-      message.success("Tạo chiến dịch thành công!");
+      message.success("Campaign created successfully!");
     }
 
     handleCancel();
   };
 
-  const handleDelete = (key) => {
-    setCampaigns(campaigns.filter((c) => c.key !== key));
-    message.success("Xóa chiến dịch thành công!");
+  const handleDelete = (id) => {
+    setCampaigns(campaigns.filter((c) => c.id !== id));
+    message.success("Campaign deleted successfully!");
   };
 
-  const handleStatusChange = (key, newStatus) => {
-    setCampaigns(
-      campaigns.map((c) => (c.key === key ? { ...c, status: newStatus } : c))
-    );
-    message.info(
-      `Đã ${newStatus === "Dừng" ? "dừng" : "kích hoạt"} chiến dịch!`
-    );
+  const handleStatusChange = (id, newStatus) => {
+    setCampaigns(campaigns.map((c) => (c.id === id ? { ...c, status: newStatus } : c)));
+    message.info(`Campaign ${newStatus === "Stopped" ? "stopped" : "activated"}!`);
   };
 
   const columns = [
     {
-      title: "Hình Ảnh",
+      title: "Image",
       dataIndex: "image",
       key: "image",
       render: (image) => (
-        <img
-          src={image}
-          alt="Campaign"
-          style={{ width: 50, height: 50, borderRadius: 4 }}
-        />
+        <img src={image} alt="Campaign" style={{ width: 50, height: 50, borderRadius: 4 }} />
       ),
     },
     {
-      title: "Tên Chiến Dịch",
-      dataIndex: "name",
-      key: "name",
+      title: "Campaign Name",
+      dataIndex: "campaignName",
+      key: "campaignName",
       render: (text) => <strong>{text}</strong>,
     },
     {
-      title: "Mô Tả",
+      title: "Description",
       dataIndex: "description",
       key: "description",
     },
     {
-      title: "Ngày Chạy",
+      title: "Campaign Dates",
       key: "dates",
       render: (_, record) => (
         <div>
-          {record.startDate} <FaArrowRight /> {record.endDate}
+          {record.createDate} <FaArrowRight /> {record.endDate}
         </div>
       ),
     },
     {
-      title: "Trạng Thái",
+      title: "Status",
       dataIndex: "status",
       key: "status",
       render: (status) => {
         const color =
-          status === "Đang chạy"
+          status === "Running"
             ? "green"
-            : status === "Sắp bắt đầu"
+            : status === "Upcoming"
             ? "blue"
-            : status === "Dừng"
+            : status === "Stopped"
             ? "red"
             : "default";
         return <Tag color={color}>{status}</Tag>;
       },
     },
     {
-      title: "Ngân Sách",
-      dataIndex: "budget",
-      key: "budget",
-      render: (budget) => `$${budget.toLocaleString()}`,
+      title: "Deposit",
+      dataIndex: "deposit",
+      key: "deposit",
+      render: (deposit) => `$${deposit.toLocaleString()}`,
     },
     {
-      title: "Mạng Affiliate",
-      key: "affiliateNetworks",
-      render: (_, record) => (
-        <div>
-          {record.affiliateNetworks.map((network) => (
-            <Tag key={network}>{network}</Tag>
-          ))}
-        </div>
-      ),
+      title: "Target Customer",
+      dataIndex: "targetCustomer",
+      key: "targetCustomer",
     },
     {
-      title: "Hành Động",
+      title: "Zone",
+      dataIndex: "zone",
+      key: "zone",
+    },
+    {
+      title: "Actions",
       key: "action",
       render: (_, record) => (
         <Dropdown
           overlay={
             <Menu>
-              <Menu.Item
-                key="edit"
-                icon={<EditOutlined />}
-                onClick={() => showModal(record)}
-              >
-                Chỉnh Sửa
+              <Menu.Item key="edit" icon={<EditOutlined />} onClick={() => showModal(record)}>
+                Edit
               </Menu.Item>
               <NavLink to={"/campaigns/detail"}>
                 <Menu.Item key="view" icon={<EyeOutlined />}>
-                  Chi Tiết
+                  View Details
                 </Menu.Item>
               </NavLink>
-              {record.status === "Đang chạy" ? (
+              {record.status === "Running" ? (
                 <Menu.Item
                   key="stop"
                   icon={<StopOutlined />}
-                  onClick={() => handleStatusChange(record.key, "Dừng")}
+                  onClick={() => handleStatusChange(record.id, "Stopped")}
                 >
-                  Dừng Chiến Dịch
+                  Stop Campaign
                 </Menu.Item>
               ) : (
                 <Menu.Item
                   key="activate"
                   icon={<PlayCircleOutlined />}
-                  onClick={() => handleStatusChange(record.key, "Đang chạy")}
+                  onClick={() => handleStatusChange(record.id, "Running")}
                 >
-                  Kích Hoạt
+                  Activate
                 </Menu.Item>
               )}
               <Menu.Item key="delete" danger>
                 <Popconfirm
-                  title="Bạn có chắc muốn xóa chiến dịch này?"
-                  onConfirm={() => handleDelete(record.key)}
-                  okText="Xóa"
-                  cancelText="Hủy"
+                  title="Are you sure you want to delete this campaign?"
+                  onConfirm={() => handleDelete(record.id)}
+                  okText="Delete"
+                  cancelText="Cancel"
                 >
                   <div>
-                    <DeleteOutlined /> Xóa Chiến Dịch
+                    <DeleteOutlined /> Delete Campaign
                   </div>
                 </Popconfirm>
               </Menu.Item>
@@ -370,13 +346,9 @@ const Campaigns = () => {
   return (
     <div className={cx("campaigns-container")}>
       <div className={cx("campaigns-header")}>
-        <h1>Quản Lý Chiến Dịch</h1>
-        <Button
-          type="primary"
-          icon={<PlusOutlined />}
-          onClick={() => showModal()}
-        >
-          Tạo Chiến Dịch Mới
+        <h1>Campaign Management</h1>
+        <Button type="primary" icon={<PlusOutlined />} onClick={() => showModal()}>
+          Create New Campaign
         </Button>
       </div>
 
@@ -393,7 +365,7 @@ const Campaigns = () => {
       />
 
       <Modal
-        title={isEditMode ? "Chỉnh Sửa Chiến Dịch" : "Tạo Chiến Dịch Mới"}
+        title={isEditMode ? "Edit Campaign" : "Create New Campaign"}
         visible={isModalVisible}
         onCancel={handleCancel}
         footer={null}
@@ -403,54 +375,50 @@ const Campaigns = () => {
           onFinish={handleSubmit}
           layout="vertical"
           initialValues={{
-            commissionType: "CPA",
-            affiliateNetworks: [],
+            payoutMethod: "CPA",
           }}
         >
           <Form.Item
-            label="Tên Chiến Dịch"
-            name="name"
+            label="Campaign Name"
+            name="campaignName"
             rules={[
               {
                 required: true,
-                message: "Vui lòng nhập tên chiến dịch!",
+                message: "Please enter the campaign name!",
               },
             ]}
           >
-            <Input placeholder="Nhập tên chiến dịch" />
+            <Input placeholder="Enter campaign name" />
           </Form.Item>
 
           <Form.Item
-            label="Mô Tả"
+            label="Description"
             name="description"
             rules={[
               {
                 required: true,
-                message: "Vui lòng nhập mô tả chiến dịch!",
+                message: "Please enter the campaign description!",
               },
             ]}
           >
-            <Input.TextArea
-              placeholder="Mô tả chi tiết về chiến dịch"
-              rows={3}
-            />
+            <Input.TextArea placeholder="Enter detailed description of the campaign" rows={3} />
           </Form.Item>
 
           <Form.Item
-            label="Hình Ảnh"
+            label="Image URL"
             name="image"
-            rules={[{ required: true, message: "Vui lòng nhập URL hình ảnh!" }]}
+            rules={[{ required: true, message: "Please enter the image URL!" }]}
           >
-            <Input placeholder="Nhập URL hình ảnh" />
+            <Input placeholder="Enter image URL" />
           </Form.Item>
 
           <Form.Item
-            label="Thời Gian Chiến Dịch"
+            label="Campaign Dates"
             name="dateRange"
             rules={[
               {
                 required: true,
-                message: "Vui lòng chọn thời gian chiến dịch!",
+                message: "Please select the campaign dates!",
               },
             ]}
           >
@@ -458,47 +426,63 @@ const Campaigns = () => {
           </Form.Item>
 
           <Form.Item
-            label="Ngân Sách"
-            name="budget"
+            label="Deposit"
+            name="deposit"
             rules={[
               {
                 required: true,
-                message: "Vui lòng nhập ngân sách chiến dịch!",
+                message: "Please enter the campaign deposit!",
               },
             ]}
           >
-            <Input type="number" prefix="$" placeholder="Nhập ngân sách" />
+            <Input type="number" prefix="$" placeholder="Enter deposit" />
           </Form.Item>
 
           <Form.Item
-            label="Loại Hoa Hồng"
-            name="commissionType"
+            label="Target Customer"
+            name="targetCustomer"
             rules={[
               {
                 required: true,
-                message: "Vui lòng chọn loại hoa hồng!",
+                message: "Please enter the target customer!",
               },
             ]}
           >
-            <Select placeholder="Chọn loại hoa hồng">
-              <Option value="CPA">CPA (Chi trả theo hành động)</Option>
-              <Option value="Revenue Share">Chia sẻ doanh thu</Option>
-              <Option value="Hybrid">Kết hợp</Option>
-            </Select>
+            <Input placeholder="Enter target customer" />
           </Form.Item>
 
-          <Form.Item label="Mạng Affiliate" name="affiliateNetworks">
-            <Select mode="multiple" placeholder="Chọn các mạng affiliate">
-              <Option value="Sendo">Sendo</Option>
-              <Option value="Lazada">Lazada</Option>
-              <Option value="Shopee">Shopee</Option>
-              <Option value="Tiki">Tiki</Option>
+          <Form.Item
+            label="Zone"
+            name="zone"
+            rules={[
+              {
+                required: true,
+                message: "Please enter the zone!",
+              },
+            ]}
+          >
+            <Input placeholder="Enter zone" />
+          </Form.Item>
+
+          <Form.Item
+            label="Payout Method"
+            name="payoutMethod"
+            rules={[
+              {
+                required: true,
+                message: "Please select the payout method!",
+              },
+            ]}
+          >
+            <Select placeholder="Select payout method">
+              <Option value="CPA">CPA (Cost Per Action)</Option>
+              <Option value="Revenue Share">Revenue Share</Option>
             </Select>
           </Form.Item>
 
           <Form.Item>
             <Button type="primary" htmlType="submit" block>
-              {isEditMode ? "Cập Nhật" : "Tạo Chiến Dịch"}
+              {isEditMode ? "Update" : "Create Campaign"}
             </Button>
           </Form.Item>
         </Form>

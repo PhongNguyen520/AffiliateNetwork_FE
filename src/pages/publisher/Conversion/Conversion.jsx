@@ -1,18 +1,13 @@
 import React, { useState } from "react";
-import Header from "../../components/HeaderPublisher/Header";
-import ConversionReport from "../../components/PublisherConversion/ConversionReport ";
-import ReportByOrder from "../../components/PublisherConversion/ReportByOrder";
-import styles from "../../pages/PublisherConversion/PublisherConversion.module.scss";
+import ConversionReport from "../../../components/PublisherConversion/ConversionReport ";
+import ReportByOrder from "../../../components/PublisherConversion/ReportByOrder";
+import styles from "./Conversion.module.scss";
 
-const PublisherConversion = () => {
+const Conversion = () => {
     const [tab, setTab] = useState("conversion");
 
     return (
         <div className={styles.container}>
-
-            <Header />
-
-
             <div className={styles.filters}>
                 <input type="date" />
                 <input type="text" placeholder="Order Code" />
@@ -74,4 +69,4 @@ const PublisherConversion = () => {
     );
 };
 
-export default PublisherConversion;
+export default Conversion;

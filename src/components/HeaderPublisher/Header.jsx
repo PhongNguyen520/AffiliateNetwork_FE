@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import classNames from "classnames/bind";
 import styles from "./Header.module.scss";
 import images from "../../assets/images";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import config from "../../config";
 
 const cx = classNames.bind(styles);
@@ -18,7 +18,9 @@ function Header() {
     <>
       <div className={cx("wrapper")}>
         <div className={cx("logo")}>
+        <Link to={config.routes.home}>
           <img src={images.logo} alt="logo" />
+          </Link>
         </div>
         <div className={cx("navbar")}>
           <nav>
@@ -29,7 +31,7 @@ function Header() {
                 </Link>
               </li>
               <li>
-                <Link to={config.routes.campaigns}>
+                <Link to={config.routes.listCampaigns}>
                   <span href="#">Campaigns</span>
                 </Link>
               </li>

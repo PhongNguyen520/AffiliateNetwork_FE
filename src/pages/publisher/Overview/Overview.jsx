@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { LineChart, Line, XAxis, YAxis, Tooltip, CartesianGrid, ResponsiveContainer } from "recharts";
-import styles from "./PublisherOverview.module.scss";
+import styles from "./Overview.module.scss";
 
 const dataCards = [
     { title: "Total Click", value: "1.258", change: "+6.2", color: "#3BAFDA" },
@@ -38,7 +38,7 @@ const monthlyData = dailyData.map(d => ({
     earnings: d.earnings * 1.5
 }));
 
-const PublisherOverview = () => {
+const Overview = () => {
     const [timeRange, setTimeRange] = useState("monthly");
 
     const getChartData = () => {
@@ -128,4 +128,4 @@ const PublisherOverview = () => {
     );
 };
 
-export default PublisherOverview;
+export default Overview;

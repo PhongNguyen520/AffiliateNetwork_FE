@@ -1,8 +1,8 @@
 import React from "react";
 import classNames from "classnames/bind";
 import styles from "./AdvertiserLayout.module.scss";
-import HeaderAdvertiser from "../HeaderAdvertiser/HeaderAdvertiser";
-import SidebarAdvertiser from "../SidebarAdvertiser/SidebarAdvertiser";
+import HeaderAdvertiser from "../../components/HeaderAdvertiser/HeaderAdvertiser";
+import SidebarAdvertiser from "../../components/SidebarAdvertiser/SidebarAdvertiser";
 
 const cx = classNames.bind(styles);
 
