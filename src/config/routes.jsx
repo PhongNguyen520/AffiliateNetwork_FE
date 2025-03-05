@@ -10,6 +10,7 @@ const routes = {
     unauthorized: '/unauthorized',
     publisherConversion: '/conversions',
     statistic: '/statistic',
+    createCampaign: '/campaign/create',
 }
 
 export default routes;
