@@ -1,20 +1,16 @@
 import React from "react";
-import { Outlet } from "react-router-dom";
-
 import HeaderPublisher from "../../components/HeaderPublisher/Header";
 
-import styles from "./PublisherLayout.module.scss"; // SCSS module cho layout
+import styles from "./PublisherLayout.module.scss"; 
 
-const PublisherLayout = () => {
+const PublisherLayout = ({ children }) => {
   return (
     <div className={styles.layout}>
-     
       <div className={styles.mainContent}>
         <HeaderPublisher />
         <div className={styles.content}>
-          <Outlet /> 
+          {children}
         </div>
-       
       </div>
     </div>
   );

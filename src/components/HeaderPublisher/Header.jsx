@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import classNames from "classnames/bind";
 import styles from "./Header.module.scss";
 import images from "../../assets/images";
+import { Link } from "react-router-dom";
+import config from "../../config";
 
 const cx = classNames.bind(styles);
 
@@ -16,26 +18,36 @@ function Header() {
     <>
       <div className={cx("wrapper")}>
         <div className={cx("logo")}>
-          <img src={images.logo2} alt="logo" />
+          <img src={images.logo} alt="logo" />
         </div>
         <div className={cx("navbar")}>
           <nav>
             <ul>
               <li>
-                <a href="#">Overview</a>
+                <Link to={config.routes.overviewPublisher}>
+                  <span href="#">Overview</span>
+                </Link>
               </li>
               <li>
-                <a href="#">Campaigns</a>
+                <Link to={config.routes.campaigns}>
+                  <span href="#">Campaigns</span>
+                </Link>
               </li>
               <li>
-                <a href="#">Advertisers</a>
+                <Link to={config.routes.overviewPublisher}>
+                  <span href="#">Performance</span>
+                </Link>
+              </li>
+              <li>
+                <Link to={config.routes.overviewPublisher}>
+                  <span href="#">Reports</span>
+                </Link>
               </li>
 
               <li>
-                <a href="#">Guides</a>
-              </li>
-              <li>
-                <a href="#">Contact</a>
+                <Link to={config.routes.overviewPublisher}>
+                  <span href="#">Links</span>
+                </Link>
               </li>
             </ul>
           </nav>
