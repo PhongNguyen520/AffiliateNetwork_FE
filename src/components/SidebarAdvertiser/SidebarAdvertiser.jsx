@@ -48,7 +48,7 @@ function SidebarAdvertiser() {
           </div>
         ) : (
           <div className={cx("logo-collapsed")}>
-            <img src={images.logo2} alt="Logo" />
+            <img src={images.logo} alt="Logo" />
           </div>
         )}
 

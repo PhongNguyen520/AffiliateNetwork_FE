@@ -14,6 +14,8 @@ import {
   MessageSquare,
   DollarSignIcon,
 } from "lucide-react";
+import { Link } from "react-router-dom";
+import config from "../../config";
 
 const cx = classNames.bind(styles);
 
@@ -366,6 +368,7 @@ function CampaignList() {
 
           <div className={cx("campaign-list")}>
             {campaigns.map((campaign) => (
+              <Link to={`/campaign/${campaign.id}`} state={{key: campaign.id}}>
               <div key={campaign.id} className={cx("campaign-item")}>
                 <div className={cx("campaign-image")}>
                   <img src={campaign.image} alt={campaign.name} />
@@ -415,9 +418,10 @@ function CampaignList() {
                   <div className={cx("create-date")}>
                     Created: {campaign.createdate}
                   </div>
-                  <button className={cx("join-button")}>Join Campaign</button>
+                  {/* <button className={cx("join-button")}>Join Campaign</button> */}
                 </div>
               </div>
+              </Link>
             ))}
           </div>
         </section>
