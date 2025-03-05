@@ -16,6 +16,7 @@
     "classnames": "^2.5.1",
     "dayjs": "^1.11.13",
     "lucide-react": "^0.471.0",
+    "rc-util": "^5.44.4",
     "react": "^19.0.0",
     "react-apexcharts": "^1.7.0",
     "react-bootstrap": "^2.10.7",

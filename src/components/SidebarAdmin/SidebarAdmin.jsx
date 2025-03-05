@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import classNames from "classnames/bind";
-import styles from "./SidebarAdvertiser.module.scss";
+import styles from "./SidebarAdmin.module.scss";
 import { Sidebar, Menu, MenuItem, SubMenu } from "react-pro-sidebar";
 import {
   FaGem,
@@ -16,7 +16,7 @@ import images from "../../assets/images";
 
 const cx = classNames.bind(styles);
 
-function SidebarAdvertiser() {
+function SidebarAdmin() {
   const [collapsed, setCollapsed] = useState(true);
   const [isHovered, setIsHovered] = useState(false);
 
@@ -59,6 +59,7 @@ function SidebarAdvertiser() {
 
           <MenuItem icon={<FaUsers />}>Publishers</MenuItem>
 
+          <MenuItem icon={<FaLink />}>Links</MenuItem>
           <SubMenu
             title="Reports"
             icon={<FaChartLine />}
@@ -66,8 +67,10 @@ function SidebarAdvertiser() {
           >
             <MenuItem>Sales</MenuItem>
             <MenuItem>Traffic</MenuItem>
-            <MenuItem>Performance</MenuItem>
+            <MenuItem>Conversion</MenuItem>
+            <MenuItem>Affiliate Performance</MenuItem>
           </SubMenu>
+          <MenuItem icon={<FaTools />}>Tracking Tools</MenuItem>
           <MenuItem icon={<FaCog />}>Settings</MenuItem>
           <MenuItem icon={<FaPhoneAlt />}>Support</MenuItem>
         </Menu>
@@ -76,4 +79,4 @@ function SidebarAdvertiser() {
   );
 }
 
-export default SidebarAdvertiser;
+export default SidebarAdmin;

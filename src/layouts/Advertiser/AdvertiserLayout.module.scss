@@ -1,0 +1,11 @@
+.wrapper {
+  display: grid;
+  grid-template-columns: 0fr 5fr;
+  height: 100vh;
+}
+
+.body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }

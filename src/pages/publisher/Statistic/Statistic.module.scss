@@ -1,0 +1,185 @@
+.dashboard {
+    font-family: 'Inter', sans-serif;
+    background-color: #f8f9fa;
+    min-height: 100vh;
+  }
+  
+//   .main-content {
+//     max-width: 1280px;
+//     margin: 0 auto;
+//     padding: 20px;
+//   }
+  
+  .stats-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    margin-bottom: 20px;
+    
+    @media (max-width: 992px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    
+    @media (max-width: 576px) {
+      grid-template-columns: 1fr;
+    }
+  }
+  
+  .chart-section {
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    padding: 20px;
+    margin-bottom: 20px;
+  }
+  
+  .chart-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    
+    @media (max-width: 768px) {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 10px;
+    }
+  }
+  
+  .tabs {
+    display: flex;
+    gap: 20px;
+    
+    @media (max-width: 576px) {
+      overflow-x: auto;
+      width: 100%;
+      padding-bottom: 10px;
+    }
+  }
+  
+  .tab {
+    background: none;
+    border: none;
+    padding: 8px 0;
+    color: #666;
+    font-size: 14px;
+    cursor: pointer;
+    position: relative;
+    
+    &.active {
+      color: #000;
+      font-weight: 500;
+      
+      &:after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        background-color: #000;
+      }
+    }
+  }
+  
+  .year-filter {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  
+  .filter-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    
+    &.this-year {
+      background-color: #3B82F6;
+    }
+    
+    &.last-year {
+      background-color: #222;
+    }
+  }
+  
+  .filter-label {
+    font-size: 13px;
+    color: #666;
+  }
+  
+  .chart-body {
+    height: 300px;
+  }
+  
+  .traffic-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-bottom: 20px;
+    
+    @media (max-width: 768px) {
+      grid-template-columns: 1fr;
+    }
+  }
+  
+  .traffic-source, .traffic-device {
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    padding: 20px;
+  }
+  
+  .section-title {
+    font-size: 16px;
+    font-weight: 500;
+    margin-bottom: 20px;
+    color: #333;
+  }
+  
+  .campaign-analysis {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 20px;
+    margin-bottom: 20px;
+    
+    @media (max-width: 768px) {
+      grid-template-columns: 1fr;
+    }
+  }
+  
+  .campaign-pie, .conversions {
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    padding: 20px;
+  }
+  
+  .campaign-tables {
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    padding: 20px;
+    margin-bottom: 40px;
+  }
+  
+  .table-section-title {
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 30px;
+    color: #000;
+  }
+  
+  .campaign-table-section {
+    margin-bottom: 30px;
+    
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+  
+  .table-status {
+    font-size: 14px;
+    font-weight: 500;
+    color: #666;
+    margin-bottom: 10px;
+  }
