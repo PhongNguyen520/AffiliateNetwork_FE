@@ -1,0 +1,162 @@
+.container {
+    width: 100%; 
+    max-width: 1500px; 
+    margin: 0 auto; 
+    padding: 20px;
+  }
+  
+  
+  .toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+  }
+  
+  
+  .exportBtn {
+    background-color: white;
+    color: black;
+    padding: 8px 16px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 14px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: 0.3s;
+    margin-left: -10px;
+  
+    &:hover {
+      background-color: #f8f9fa;
+    }
+  
+    i {
+      font-size: 16px;
+    }
+  }
+  
+  
+  .filterSection {
+    display: flex;
+    gap: 20px;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    padding: 0 20px;
+  
+    @media (max-width: 768px) {
+      flex-direction: column;
+      align-items: stretch;
+    }
+  }
+  
+  .filterSelect {
+    width: 150px;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: white;
+    font-size: 14px;
+  }
+  
+  .searchBtn {
+    background-color: #000;
+    color: white;
+    padding: 8px 16px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  
+    &:hover {
+      background-color: #333;
+    }
+  
+    i {
+      font-size: 16px;
+    }
+  }
+  
+ 
+  .tableContainer {
+    width: 100%;
+    overflow: hidden; 
+  }
+  
+  .table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+  }
+  
+  .table th, .table td {
+    border-bottom: 1px solid #ddd;
+    padding: 10px; 
+    text-align: left;
+    font-size: 14px;
+    white-space: nowrap; 
+  }
+  
+  .table th {
+    background-color: #f8f9fa;
+    font-weight: bold;
+  }
+  
+  .detailsBtn {
+    background: none;
+    border: none;
+    color: #2563eb;
+    cursor: pointer;
+    font-size: 14px;
+    text-decoration: none;
+  
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+  
+  
+  .paginationContainer {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 20px;
+  }
+  
+  .paginationControls {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  
+    button {
+      background: none;
+      border: none;
+      color: #333;
+      font-size: 14px;
+      cursor: pointer;
+  
+      &:hover {
+        text-decoration: underline;
+      }
+  
+      &:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+      }
+    }
+  }
+  
+  .pageNumber {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 2rem;
+    height: 2rem;
+    font-size: 0.875rem;
+    color: #1a1a1a;
+  }
+  

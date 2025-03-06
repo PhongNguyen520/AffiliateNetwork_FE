@@ -2,7 +2,7 @@ import React from 'react';
 import classNames from 'classnames/bind';
 import { useNavigate } from 'react-router-dom';
 import styles from './Unauthorized.module.scss';
-import { FaLock } from 'react-icons/fa'; 
+import { FaLock } from 'react-icons/fa';
 
 const cx = classNames.bind(styles);
 
@@ -10,7 +10,7 @@ function Unauthorized() {
   const navigate = useNavigate();
 
   const handleBackToHome = () => {
-    navigate('/'); 
+    navigate('/');
   };
 
   return (

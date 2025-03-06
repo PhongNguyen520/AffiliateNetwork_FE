@@ -3,9 +3,9 @@ import { useLocation, Navigate, Outlet } from 'react-router-dom';
 // import { ModalContext } from '../../components/ModalProvider/ModalProvider';
 
 const RequireAuth = ({ allowedRoles, roleName }) => {
-//   const { user } = useContext(ModalContext);
+  //   const { user } = useContext(ModalContext);
 
-var user = {
+  var user = {
     roleName: "Advertiser",
   };
   const location = useLocation();
@@ -13,7 +13,7 @@ var user = {
   if (!user) {
     return <Navigate to="/" state={{ from: location }} replace />;
   }
- 
+
 
   if (!allowedRoles.includes(roleName)) {
     return <Navigate to="/unauthorized" state={{ from: location }} replace />;
