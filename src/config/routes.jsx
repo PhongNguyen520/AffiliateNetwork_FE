@@ -11,6 +11,10 @@ const routes = {
     publisherConversion: '/conversions',
     statistic: '/statistic',
     createCampaign: '/campaign/create',
+    createLinkStep1: '/create-link/step1',
+    createLinkStep2: '/create-link/step2',
+    createLinkStep3: '/create-link/step3',
+    createLinkStep4: '/create-link/step4',
 }
 
 export default routes;

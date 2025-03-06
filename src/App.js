@@ -8,7 +8,7 @@ import RequireAuth from "./pages/requireAuth/RequireAuth";
 const AppContent = () => {
   const authToken = true;
 var user =  {
-  roleName: "Advertiser",
+  roleName: "Publisher",
 };
   const renderRoute = (route, index) => {
     const Layout = route.layout === null ? Fragment : route.layout;
