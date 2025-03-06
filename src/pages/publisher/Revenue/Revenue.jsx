@@ -1,7 +1,7 @@
 import { useState } from "react";
-import styles from "./Revenue.module.scss"; 
+import styles from "./Revenue.module.scss";
 import Header from "../../../components/HeaderPublisher/Header";
-import Footer from "../../../components/Publisher/Footer/Footer";
+
 
 const currentYear = new Date().getFullYear();
 const yearOptions = Array.from({ length: 5 }, (_, i) => currentYear - i);
@@ -22,7 +22,7 @@ export default function RevenueReport() {
 
     return (
         <div className={styles.container}>
-            <Header />
+
             <div className={styles.toolbar}>
                 <h1>Revenue Report</h1>
                 <button className={styles.exportBtn} onClick={handleExport}>
@@ -56,7 +56,7 @@ export default function RevenueReport() {
                 <button className={styles.searchBtn} onClick={handleSearch}>Search</button>
             </div>
 
-      
+
             <table className={styles.table}>
                 <thead>
                     <tr>
@@ -100,7 +100,7 @@ export default function RevenueReport() {
                     <button onClick={() => setCurrentPage(p => p + 1)}>Next</button>
                 </div>
             </div>
-            <Footer />
+
         </div>
     );
 }

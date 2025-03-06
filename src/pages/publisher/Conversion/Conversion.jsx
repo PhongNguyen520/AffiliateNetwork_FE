@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import ConversionReport from "../../../components/PublisherConversion/ConversionReport ";
 import ReportByOrder from "../../../components/PublisherConversion/ReportByOrder";
 import styles from "./Conversion.module.scss";
-import Footer from "../../../components/Publisher/Footer/Footer";
+
 
 const Conversion = () => {
     const [tab, setTab] = useState("conversion");
@@ -66,7 +66,7 @@ const Conversion = () => {
             <div className={styles.content}>
                 {tab === "conversion" ? <ConversionReport /> : <ReportByOrder />}
             </div>
-            <Footer />
+
         </div>
     );
 };
