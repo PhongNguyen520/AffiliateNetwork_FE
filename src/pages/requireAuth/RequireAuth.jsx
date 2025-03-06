@@ -6,7 +6,7 @@ const RequireAuth = ({ allowedRoles, roleName }) => {
   //   const { user } = useContext(ModalContext);
 
   var user = {
-    roleName: "Publisher",
+    roleName: "Advertiser",
   };
   const location = useLocation();
 
