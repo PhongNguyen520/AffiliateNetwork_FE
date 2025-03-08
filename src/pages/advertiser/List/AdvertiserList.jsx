@@ -18,7 +18,7 @@ export default function AdvertiserList() {
     const [selectedRows, setSelectedRows] = useState(new Set());
     const [selectAll, setSelectAll] = useState(false);
 
-    // Mock data thay vì dùng API fetch
+
     const advertisers = [
         {
             id: 1,
