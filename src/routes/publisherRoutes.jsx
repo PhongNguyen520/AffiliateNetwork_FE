@@ -9,7 +9,7 @@ import CreateLinkStep3 from "../pages/publisher/CreateLink/Step3/CreateLinkStep3
 import CreateLinkStep2 from "../pages/publisher/CreateLink/Step2/CreateLinkStep2";
 import CreateLinkStep4 from "../pages/publisher/CreateLink/Step4/CreateLinkStep4";
 import RevenueReport from "../pages/publisher/Revenue/Revenue";
-
+import TrafficReport from "../pages/publisher/TrafficReport/TrafficReport";
 export const publisherRoutes = [
   { path: config.routes.home, component: HomePage, layout: PublisherLayout },
   { path: config.routes.overviewPublisher, component: PublisherOverview, layout: PublisherLayout },
@@ -20,4 +20,5 @@ export const publisherRoutes = [
   { path: config.routes.createLinkStep3, component: CreateLinkStep3, layout: PublisherLayout },
   { path: config.routes.createLinkStep4, component: CreateLinkStep4, layout: PublisherLayout },
   { path: config.routes.revenue, component: RevenueReport, layout: PublisherLayout },
+  { path: config.routes.trafficReport, component: TrafficReport, layout: PublisherLayout }
 ];

@@ -18,7 +18,8 @@ const routes = {
     createLinkStep3: '/create-link/step3',
     createLinkStep4: '/create-link/step4',
     revenue: '/revenue',
-    list: '/list',
+    // list: '/list',
+    trafficReport: '/traffic-report'
 }
 
 export default routes;
