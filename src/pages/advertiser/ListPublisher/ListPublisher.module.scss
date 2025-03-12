@@ -1,0 +1,128 @@
+.listPublisher {
+  padding: 1rem;
+  max-width: 100%; // Đảm bảo không vượt quá khung màn hình
+  margin: 0 auto;
+  box-sizing: border-box;
+  overflow-x: auto; // Cho phép cuộn ngang khi màn hình nhỏ
+}
+
+.filters {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  align-items: center;
+  flex-wrap: wrap; // Đảm bảo responsive
+}
+
+.dateInput, .selectBox {
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+  min-width: 150px; 
+}
+
+.dataTable {
+  width: 100%;
+  max-width: 100%; 
+  border-collapse: collapse;
+  border: 1px solid #ddd;
+  background: white;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.05);
+  table-layout: auto;
+
+  th, td {
+    padding: 0.75rem 1rem;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+    word-wrap: break-word; 
+    white-space: nowrap; 
+  }
+
+  th {
+    background: #f8f9fa;
+    font-weight: 600;
+    color: #333;
+    text-transform: capitalize;
+  }
+
+  tbody tr {
+    transition: background 0.2s ease-in-out;
+
+    &:hover {
+      background: #f1f1f1;
+    }
+  }
+}
+
+.status {
+  padding: 0.3rem 0.5rem;
+  border-radius: 5px;
+  font-weight: bold;
+  font-size: 0.875rem;
+  text-align: center;
+}
+
+.active {
+  background: #d1fae5;
+  color: #065f46;
+}
+
+.expired {
+  background: #fee2e2;
+  color: #b91c1c;
+}
+
+a {
+  color: #007bff;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.paginationContainer {
+  display: flex;
+  justify-content: flex-end; 
+  margin-top: 20px;
+  width: 100%;
+}
+
+.paginationControls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  button {
+    background: none;
+    border: 1px solid #ddd;
+    padding: 0.5rem 0.75rem;
+    border-radius: 5px;
+    color: #333;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.2s;
+
+    &:hover {
+      background: #f8f9fa;
+    }
+
+    &:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+  }
+}
+
+.pageNumber {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 2rem;
+  height: 2rem;
+  font-size: 0.875rem;
+  color: #1a1a1a;
+}

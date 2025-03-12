@@ -20,7 +20,8 @@ const routes = {
     revenue: '/revenue',
     // list: '/list',
     trafficReport: '/traffic-report',
-    listPublisherAmin: '/list-publisher'
+    listPublisherAmin: '/list-publisher',
+    listPublisherAdvertiser: '/list-publisher',
 }
 
 export default routes;
