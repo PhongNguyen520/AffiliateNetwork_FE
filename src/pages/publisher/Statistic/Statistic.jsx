@@ -18,7 +18,6 @@ const Statistic = () => {
   const [campaignFilter, setCampaignFilter] = useState('Total Campaigns');
   const [yearFilter, setYearFilter] = useState('This year');
   
-  // Earning over time chart data
   const earningChartOptions = {
     chart: {
       type: 'line',

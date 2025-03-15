@@ -11,7 +11,6 @@ import CreateLinkStep4 from "../pages/publisher/CreateLink/Step4/CreateLinkStep4
 import RevenueReport from "../pages/publisher/Revenue/Revenue";
 import TrafficReport from "../pages/publisher/TrafficReport/TrafficReport";
 export const publisherRoutes = [
-  { path: config.routes.home, component: HomePage, layout: PublisherLayout },
   { path: config.routes.overviewPublisher, component: PublisherOverview, layout: PublisherLayout },
   { path: config.routes.publisherConversion, component: PublisherConversion, layout: PublisherLayout },
   { path: config.routes.statistic, component: Statistic, layout: PublisherLayout },

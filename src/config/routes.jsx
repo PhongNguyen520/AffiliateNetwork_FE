@@ -2,7 +2,10 @@
 
 const routes = {
     home: '/',
+    login: '/login',
+    register: '/register',
     listCampaigns: '/list-campaigns',
+    listCampaignsAdmin: '/manage-campaigns',
     campaigns: '/campaigns',
     campaignDetail: '/campaign/:campaignId',
     profile: '/profile',
