@@ -9,4 +9,6 @@ export const adminRoutes = [
   { path: config.routes.listPublisherAmin, component: ListPublisher, layout: AdminLayout },
   {  path: config.routes.overviewAdmin, component: Overview, layout: AdminLayout},
   {  path: config.routes.listCampaignsAdmin, component: CampaignList, layout: AdminLayout},
+
+
 ];

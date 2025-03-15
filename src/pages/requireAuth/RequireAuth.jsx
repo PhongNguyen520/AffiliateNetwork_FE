@@ -3,8 +3,10 @@ import { useLocation, Navigate, Outlet } from 'react-router-dom';
 import { AuthContext } from '../../providers/AuthProvider';
 // import { ModalContext } from '../../components/ModalProvider/ModalProvider';
 
+
 const RequireAuth = ({ allowedRoles }) => {
     const { auth } = useContext(AuthContext);
+
   const location = useLocation();
 
   if (!auth) {
