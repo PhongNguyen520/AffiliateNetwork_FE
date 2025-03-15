@@ -8,7 +8,7 @@ import RequireAuth from "./pages/requireAuth/RequireAuth";
 const AppContent = () => {
   const authToken = true;
 var user =  {
-  roleName: "Publisher",
+  roleName: "Admin",
 };
   const renderRoute = (route, index) => {
     const Layout = route.layout === null ? Fragment : route.layout;
@@ -72,32 +72,6 @@ var user =  {
 const App = () => {
 
   return (
-    // <Router>
-    //   <Routes>
-    //     {publicRoutes.map((route, index) => (
-    //       <Route key={index} path={route.path} element={route.element} />
-    //     ))}
-    //     {/* Publisher Routes (Có Layout) */}
-    //     {publisherRoutes.map((route, index) => (
-    //       <Route key={index} path={route.path} element={route.element}>
-    //         {route.children &&
-    //           route.children.map((child, idx) => (
-    //             <Route key={idx} path={child.path} element={child.element} />
-    //           ))}
-    //       </Route>
-    //     ))}
-
-    //     {advertiserRoutes.map((route, index) => (
-    //       <Route key={index} path={route.path} element={route.element}>
-    //         {route.children &&
-    //           route.children.map((child, idx) => (
-    //             <Route key={idx} path={child.path} element={child.element} />
-    //           ))}
-    //       </Route>
-    //     ))}
-        
-    //   </Routes>
-    // </Router>
     <div className="App">
     <Router>
       <AppContent />

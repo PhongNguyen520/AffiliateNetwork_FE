@@ -8,5 +8,4 @@ export const advertiserRoutes = [
   {  path: config.routes.overviewAdvertiser, component: Overview, layout: AdvertiserLayout},
   {  path: config.routes.campaigns, component: Campaigns, layout: AdvertiserLayout},
   {  path: config.routes.createCampaign, component: CreateCampaign, layout: AdvertiserLayout},
-
 ];
