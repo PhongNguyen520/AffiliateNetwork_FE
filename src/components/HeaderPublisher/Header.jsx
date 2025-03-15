@@ -1,18 +1,27 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import classNames from "classnames/bind";
 import styles from "./Header.module.scss";
 import images from "../../assets/images";
-import { Link, Navigate } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import config from "../../config";
+import { AuthContext } from "../../providers/AuthProvider";
+import Cookies from "js-cookie";
 
 const cx = classNames.bind(styles);
 
 function Header() {
   const [isDropdownVisible, setDropdownVisible] = useState(false);
+  const { auth } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   const toggleDropdown = () => {
     setDropdownVisible(!isDropdownVisible);
   };
+
+  const signOut = () => {
+    Cookies.remove('access_token');
+    navigate(config.routes.login);
+};
 
   return (
     <>
@@ -55,20 +64,32 @@ function Header() {
           </nav>
         </div>
 
-        <div className={cx("container__login-user")}>
-          <div className={cx("message")}>
-            <i class="bi bi-envelope-fill"></i>
+        {auth ? (
+          <div className={cx("container__login-user")}>
+            <div className={cx("message")}>
+              <i className="bi bi-envelope-fill"></i>
+            </div>
+            <div className={cx("notification")}>
+              <i className="bi bi-bell-fill"></i>
+            </div>
+            <img
+              src="https://scontent.fsgn2-9.fna.fbcdn.net/v/t39.30808-6/461184877_1080201167130354_934555959225370992_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=6ee11a&_nc_eui2=AeF1OYvztxyUATf6-j1khSRlN4WJTXKIg_s3hYlNcoiD-1-BUvSvFlmcpDo5SPWbJmXWkiNpaIFZ26YJ567WS7HU&_nc_ohc=vGlYXRnZShsQ7kNvgGiZI4E&_nc_oc=AdjqmkJ0yd-uRwIz2-kR0NbnERDLkZeDWAU-n1djnj76gFX0vik2iamjrYvhRuzMIow&_nc_zt=23&_nc_ht=scontent.fsgn2-9.fna&_nc_gid=A0apfMar8y2tCAUxFDA3jQ0&oh=00_AYA7PU8FTxO4IfqEDVmFntAeZPwVuW5PqRbP9_QhP4-u9w&oe=67892570"
+              alt="avatar"
+              className={cx("container__login-user-img")}
+              onClick={toggleDropdown}
+            />
           </div>
-          <div className={cx("notification")}>
-            <i class="bi bi-bell-fill"></i>
-          </div>
-          <img
-            src="https://scontent.fsgn2-9.fna.fbcdn.net/v/t39.30808-6/461184877_1080201167130354_934555959225370992_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=6ee11a&_nc_eui2=AeF1OYvztxyUATf6-j1khSRlN4WJTXKIg_s3hYlNcoiD-1-BUvSvFlmcpDo5SPWbJmXWkiNpaIFZ26YJ567WS7HU&_nc_ohc=vGlYXRnZShsQ7kNvgGiZI4E&_nc_oc=AdjqmkJ0yd-uRwIz2-kR0NbnERDLkZeDWAU-n1djnj76gFX0vik2iamjrYvhRuzMIow&_nc_zt=23&_nc_ht=scontent.fsgn2-9.fna&_nc_gid=A0apfMar8y2tCAUxFDA3jQ0&oh=00_AYA7PU8FTxO4IfqEDVmFntAeZPwVuW5PqRbP9_QhP4-u9w&oe=67892570"
-            alt="avatar"
-            className={cx("container__login-user-img")}
-            onClick={toggleDropdown}
-          />
+        ) : (
+          <div className={cx("login-container")}>
+          <Link to={config.routes.login} className={cx("login-button")}>
+            <i className="bi bi-box-arrow-in-right"></i>
+            <span className={cx("login-text")}>Login</span>
+          </Link>
+          <Link to={config.routes.register} className={cx("register-button")}>
+            <span className={cx("register-text")}>Sign Up</span>
+          </Link>
         </div>
+        )}
 
         {isDropdownVisible && (
           <div className={cx("dropdown-menu")}>
@@ -101,8 +122,8 @@ function Header() {
               <li>
                 <i className="bi bi-wallet2"></i> Wallet
               </li>
-              <li>
-                <i className="bi bi-box-arrow-right"></i> Log out
+              <li onClick={signOut}>
+                <i className="bi bi-box-arrow-right" ></i> Log out
               </li>
             </ul>
           </div>

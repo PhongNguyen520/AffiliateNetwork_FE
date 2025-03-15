@@ -1,5 +1,9 @@
+
+
 const routes = {
     home: '/',
+    login: '/login',
+    register: '/register',
     listCampaigns: '/list-campaigns',
     listCampaignsAdmin: '/manage-campaigns',
     campaigns: '/campaigns',
@@ -16,6 +20,11 @@ const routes = {
     createLinkStep2: '/create-link/step2',
     createLinkStep3: '/create-link/step3',
     createLinkStep4: '/create-link/step4',
+    revenue: '/revenue',
+    // list: '/list',
+    trafficReport: '/traffic-report',
+    listPublisherAmin: '/list-publisher',
+    listPublisherAdvertiser: '/list-publisher',
 }
 
 export default routes;

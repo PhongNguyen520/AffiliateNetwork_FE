@@ -228,3 +228,71 @@
   background-color: #cdcdcd;
   margin: 0;
 }
+
+
+
+
+.login-container {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.login-button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background-color: #5271ff;
+  color: white;
+  padding: 8px 16px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 4px rgba(82, 113, 255, 0.3);
+  
+  &:hover {
+    background-color: #4060ee;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(82, 113, 255, 0.4);
+  }
+  
+  &:active {
+    transform: translateY(0);
+    box-shadow: 0 1px 2px rgba(82, 113, 255, 0.4);
+  }
+  
+  i {
+    font-size: 16px;
+  }
+  
+  .login-text {
+    font-size: 16px;
+  }
+}
+
+.register-button {
+  display: flex;
+  align-items: center;
+  padding: 8px 16px;
+  background-color: transparent;
+  color: #5271ff;
+  border: 1px solid #5271ff;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  
+  &:hover {
+    background-color: rgba(82, 113, 255, 0.1);
+    transform: translateY(-2px);
+  }
+  
+  &:active {
+    transform: translateY(0);
+  }
+  
+  .register-text {
+    font-size: 16px;
+  }
+}
