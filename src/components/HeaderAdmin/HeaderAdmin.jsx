@@ -1,15 +1,25 @@
 import React, { useState } from "react";
 import classNames from "classnames/bind";
 import styles from "./HeaderAdmin.module.scss";
+import Cookies from "js-cookie";
+import { Link, Navigate, useNavigate } from "react-router-dom";
+
+import config from "../../config";
 
 const cx = classNames.bind(styles);
 
 function HeaderAdmin() {
   const [isDropdownVisible, setDropdownVisible] = useState(false);
+  const navigate = useNavigate();
 
   const toggleDropdown = () => {
     setDropdownVisible(!isDropdownVisible);
   };
+
+  const signOut = () => {
+    Cookies.remove('access_token');
+    navigate(config.routes.login);
+};
 
   return (
     <>
@@ -60,8 +70,8 @@ function HeaderAdmin() {
               <li>
                 <i className="bi bi-wallet2"></i> Wallet
               </li>
-              <li>
-                <i className="bi bi-box-arrow-right"></i> Log out
+              <li onClick={signOut}>
+                <i className="bi bi-box-arrow-right" ></i> Log out
               </li>
             </ul>
           </div>

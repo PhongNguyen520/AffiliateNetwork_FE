@@ -22,17 +22,11 @@ const Login = () => {
   const navigate = useNavigate();
   const [error, setError] = useState("");
 
-  const toggleForm = () => {
-    setIsLogin(!isLogin);
-  };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!username || !password) {
       return;
     }
-
-    console.log(username, password);
 
     try {
       const response = await requestsPrivate.post(LOGIN_URL, {
@@ -40,29 +34,33 @@ const Login = () => {
         password: password,
       });
 
-      Cookies.set("access_token", response.data.data.accessToken, { expires: 7 });
+      Cookies.set("access_token", response.data.data.accessToken, {
+        expires: 7,
+      });
 
       let token = Cookies.get("access_token");
-    
-      const decodedToken = jwtDecode(token);
 
+      const decodedToken = jwtDecode(token);
+      console.log(decodedToken);
+      
       setAuth({
         isLoggedIn: true,
         userId: decodedToken.nameid,
         roleName: decodedToken.role,
+        avatar: decodedToken.Avatar,
+        fullName: decodedToken.FullName
       });
 
-      if (decodedToken.role === 'Publisher') {
+      if (decodedToken.role === "Publisher") {
         navigate(config.routes.home);
-    } else if (decodedToken.role === 'Advertiser') {
+      } else if (decodedToken.role === "Advertiser") {
         navigate(config.routes.overviewAdvertiser);
-    } else {
+      } else {
         navigate(config.routes.overviewAdmin);
-    }
-
-   
+      }
     } catch (err) {
-      console.error("Login error:", err);
+      console.error("Login error:", err.response.data.message);
+      setError(err.response.data.message);
       Cookies.remove("access_token");
     } finally {
     }
@@ -84,12 +82,13 @@ const Login = () => {
 
             <form className={cx("login-form")} onSubmit={handleSubmit}>
               <div className={cx("form-group")}>
-                <label>Email</label>
+                <label>UserName</label>
                 <input
                   type="text"
                   placeholder="PhongNguyen203"
                   value={username}
                   onChange={(e) => setUserName(e.target.value)}
+                  required
                 />
               </div>
 
@@ -100,12 +99,15 @@ const Login = () => {
                   placeholder="At least 8 characters"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
+                  required
                 />
               </div>
 
               <div className={cx("forgot-password")}>
                 <a href="#">Forgot Password?</a>
               </div>
+
+              {error && <div className={cx("error-message")}>{error}</div>}
 
               <button type="submit" className={cx("sign-in-btn")}>
                 Sign in
@@ -139,7 +141,8 @@ const Login = () => {
 
               <div className={cx("signup-prompt")}>
                 Don't you have an account?{" "}
-                <Link to={cx(config.routes.register)}
+                <Link
+                  to={cx(config.routes.register)}
                   className={cx("signup-link")}
                 >
                   Sign up
