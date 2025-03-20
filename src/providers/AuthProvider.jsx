@@ -20,6 +20,8 @@ export function AuthProvider({ children }) {
                     isLoggedIn: true,
                     userId: decodedToken.nameid,
                     roleName: decodedToken.role,
+                    avatar: decodedToken.Avatar,
+                    fullName: decodedToken.FullName
                   });
                 
             } catch (error) {

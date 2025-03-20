@@ -1,15 +1,26 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import classNames from "classnames/bind";
 import styles from "./HeaderAdvertiser.module.scss";
 import images from "../../assets/images";
+import Cookies from "js-cookie";
+import { Link, Navigate, useNavigate } from "react-router-dom";
+import config from "../../config";
+import { AuthContext } from "../../providers/AuthProvider";
 
 const cx = classNames.bind(styles);
 
 function HeaderAdvertiser() {
   const [isDropdownVisible, setDropdownVisible] = useState(false);
+  const { auth } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   const toggleDropdown = () => {
     setDropdownVisible(!isDropdownVisible);
+  };
+
+  const signOut = () => {
+    Cookies.remove("access_token");
+    navigate(config.routes.login);
   };
 
   return (
@@ -23,7 +34,7 @@ function HeaderAdvertiser() {
             <i class="bi bi-bell-fill"></i>
           </div>
           <img
-            src="https://media-cdn-v2.laodong.vn/storage/newsportal/2024/8/6/1376839/Shin3.jpg"
+            src={auth.avatar || images.defaultAvatar}
             alt="avatar"
             className={cx("container__login-user-img")}
             onClick={toggleDropdown}
@@ -35,14 +46,14 @@ function HeaderAdvertiser() {
             <div className={cx("user-info")}>
               <div className={cx("avatar-container")}>
                 <img
-                  src="https://media-cdn-v2.laodong.vn/storage/newsportal/2024/8/6/1376839/Shin3.jpg"
+                  src={auth.avatar || images.defaultAvatar}
                   alt="avatar"
                   className={cx("dropdown-avatar")}
                 />
                 <span className={cx("active-status")}></span>
               </div>
               <div className={cx("user-details")}>
-                <p className={cx("user-name")}>Nguyen Thanh Phong</p>
+                <p className={cx("user-name")}>{auth.fullName}</p>
                 <i className="bi bi-person"></i>
                 See profile
               </div>
@@ -61,7 +72,7 @@ function HeaderAdvertiser() {
               <li>
                 <i className="bi bi-wallet2"></i> Wallet
               </li>
-              <li>
+              <li onClick={signOut}>
                 <i className="bi bi-box-arrow-right"></i> Log out
               </li>
             </ul>
