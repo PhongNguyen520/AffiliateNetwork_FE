@@ -12,6 +12,6 @@ export const publicRoutes = [
   { path: config.routes.register, component: Register, layout:  null },
   {  path: config.routes.home, component: HomePage, layout: PublisherLayout},
   {  path: config.routes.listCampaigns, component: CampaignList, layout: null},
-  {  path: config.routes.campaignDetail, component: CampaignDetailsPage, layout: null},
+  {  path: config.routes.campaignDetail, component: CampaignDetailsPage, layout: PublisherLayout},
   { path: config.routes.unauthorized, component: Unauthorized, layout:  null },
 ];

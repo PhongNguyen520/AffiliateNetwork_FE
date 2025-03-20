@@ -49,10 +49,10 @@ const sliderSettings = {
 };
 
 function CampaignList() {
-  const [allCampaigns, setAllCampaigns] = useState([]); // Danh sách tất cả campaigns cho slider
-  const [filteredCampaigns, setFilteredCampaigns] = useState([]); // Danh sách campaigns đã lọc
+  const [allCampaigns, setAllCampaigns] = useState([]); 
+  const [filteredCampaigns, setFilteredCampaigns] = useState([]); 
   const [payoutMethods, setPayoutMethods] = useState([]);
-  const [categories, setCategories] = useState([]); // State để lưu danh sách danh mục
+  const [categories, setCategories] = useState([]); 
   const [pagination, setPagination] = useState({
     currentPage: 1,
     totalPages: 1,
@@ -76,13 +76,12 @@ function CampaignList() {
   });
   const [activeFilters, setActiveFilters] = useState({});
 
-  // Gọi API để lấy danh sách danh mục
   useEffect(() => {
     const fetchCategories = async () => {
       try {
         const response = await requestsPrivate.get(CATEGORY_LIST_URL);
         if (response.data && response.data.data) {
-          setCategories(response.data.data); // Lưu danh sách danh mục vào state
+          setCategories(response.data.data); 
         }
       } catch (error) {
         console.error("Error fetching categories:", error);
@@ -92,7 +91,6 @@ function CampaignList() {
     fetchCategories();
   }, []);
 
-  // Gọi API để lấy danh sách payout methods
   useEffect(() => {
     const fetchPayoutMethods = async () => {
       try {
@@ -108,14 +106,13 @@ function CampaignList() {
     fetchPayoutMethods();
   }, []);
 
-  // Fetch tất cả campaigns cho slider
   useEffect(() => {
     const fetchAllCampaigns = async () => {
       try {
         const params = {
           status: "Active",
           pageIndex: 1,
-          pageSize: 10, // Lấy 10 campaigns cho slider
+          pageSize: 10, 
         };
 
         const response = await requestsPrivate.get(CAMPAIGN_LIST_URL, { params });
@@ -130,7 +127,6 @@ function CampaignList() {
     fetchAllCampaigns();
   }, []);
 
-  // Fetch campaigns đã lọc
   useEffect(() => {
     const fetchFilteredCampaigns = async () => {
       try {
@@ -218,7 +214,6 @@ function CampaignList() {
     });
   };
 
-  // Tạo dữ liệu cho slider từ tất cả campaigns
   const featuredEvents = allCampaigns.map((campaign) => ({
     id: campaign.id,
     name: campaign.campaignName,

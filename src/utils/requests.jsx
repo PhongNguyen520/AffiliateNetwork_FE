@@ -1,4 +1,6 @@
 import axios from 'axios';
+import {jwtDecode} from "jwt-decode";
+import Cookies from "js-cookie";
 
 axios.defaults.withCredentials = true;
 
@@ -13,7 +15,7 @@ export const requestsPrivate = axios.create({
 
 requestsPrivate.interceptors.request.use(
     (config) => {
-        const token = localStorage.getItem('token');
+        const token = Cookies.get('access_token');
         if (token) {
             config.headers['Authorization'] = `Bearer ${token}`;
         }
