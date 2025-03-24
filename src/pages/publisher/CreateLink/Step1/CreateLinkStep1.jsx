@@ -4,20 +4,61 @@ import styles from "./CreateLinkStep1.module.scss";
 import CreateLinkStep2 from '../Step2/CreateLinkStep2';
 import { Link } from 'react-router-dom';
 import config from '../../../../config';
+import { useLocation } from "react-router-dom";
+import { requestsPrivate } from '../../../../utils/requests';
 
 const cx = classNames.bind(styles);
+const CREATE_LINK_URL = "affiliatelink/createlink";
 
 const CreateLinkStep1 = () => {
   const [utmExpanded, setUtmExpanded] = useState(false);
   const [shortenLink, setShortenLink] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [originalLink, setOriginalLink] = useState("");
+  const [domain, setDomain] = useState("");
+  const [utmSource, setUtmSource] = useState("");
+  const [utmMedium, setUtmMedium] = useState("");
+  const [utmCampaign, setUtmCampaign] = useState("");
+  const [utmContent, setUtmContent] = useState("");
+  const [optimizedLink, setOptimizedLink] = useState("");
+  const [response, setResponse] = useState({});
+  const location = useLocation();
+  const { campaign } = location.state || {};
 
   const openModal = () => {
     setIsModalOpen(true);
   };
+  
 
   const closeModal = () => {
     setIsModalOpen(false);
+  };
+
+  const handleCreateLink = async () => {
+    const requestData = {
+      url: originalLink,
+      utmSource,
+      utmMedium,
+      utmCampaign,
+      utmContent,
+      optimizeUrl: optimizedLink,
+      status: "Active",
+      campaignId: campaign?.id || "", 
+    };
+
+    try {
+      const response = await requestsPrivate.post(CREATE_LINK_URL, requestData);
+      // console.log(response.data.data);
+      
+      if (response?.data) {
+      setResponse(response.data.data);
+        openModal();
+      } else {
+        console.error("Error creating link:", response?.message);
+      }
+    } catch (error) {
+      console.error("API request failed:", error);
+    }
   };
 
   return (
@@ -35,10 +76,6 @@ const CreateLinkStep1 = () => {
           <div className={cx('step-number')}>03</div>
           <div className={cx('step-title')}>Create Content</div>
         </div>
-        <div className={cx('step')}>
-          <div className={cx('step-number')}>04</div>
-          <div className={cx('step-title')}>Post</div>
-        </div>
       </div>
 
       <div className={cx('link-form')}>
@@ -46,7 +83,12 @@ const CreateLinkStep1 = () => {
           <div className={cx('form-group')}>
             <label>Original Link</label>
             <div className={cx('input-with-icon')}>
-              <input type="text" placeholder="https://app.visily.ai/" />
+              <input 
+                type="text" 
+                placeholder="https://app.visily.ai/" 
+                value={originalLink}
+                onChange={(e) => setOriginalLink(e.target.value)} 
+              />
               <button className={cx('copy-btn')}>
                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M4 4V2C4 1.44772 4.44772 1 5 1H13C13.5523 1 14 1.44772 14 2V10C14 10.5523 13.5523 11 13 11H11V13C11 13.5523 10.5523 14 10 14H2C1.44772 14 1 13.5523 1 13V5C1 4.44772 1.44772 4 2 4H4ZM4 5H2V13H10V11H5C4.44772 11 4 10.5523 4 10V5ZM5 2V10H13V2H5Z" fill="#666"/>
@@ -56,7 +98,12 @@ const CreateLinkStep1 = () => {
           </div>
           <div className={cx('form-group')}>
             <label>Domain</label>
-            <input type="text" placeholder="https://www.facebook.com/" />
+            <input 
+              type="text" 
+              placeholder="https://www.facebook.com/" 
+              value={domain}
+              onChange={(e) => setDomain(e.target.value)} 
+            />
           </div>
         </div>
 
@@ -69,27 +116,47 @@ const CreateLinkStep1 = () => {
               </svg>
             </button>
           </div>
-          
+
           <div className={cx('utm-content', { 'hidden': !utmExpanded })}>
             <div className={cx('form-row')}>
               <div className={cx('form-group')}>
                 <label>Utm Source</label>
-                <input type="text" placeholder="facebook, google..." />
+                <input 
+                  type="text" 
+                  placeholder="facebook, google..." 
+                  value={utmSource}
+                  onChange={(e) => setUtmSource(e.target.value)} 
+                />
               </div>
               <div className={cx('form-group')}>
                 <label>Utm Medium</label>
-                <input type="text" placeholder="email, cpc, banner..." />
+                <input 
+                  type="text" 
+                  placeholder="email, cpc, banner..." 
+                  value={utmMedium}
+                  onChange={(e) => setUtmMedium(e.target.value)} 
+                />
               </div>
             </div>
-            
+
             <div className={cx('form-row')}>
               <div className={cx('form-group')}>
                 <label>Utm Campaign</label>
-                <input type="text" placeholder="productname, event..." />
+                <input 
+                  type="text" 
+                  placeholder="productname, event..." 
+                  value={utmCampaign}
+                  onChange={(e) => setUtmCampaign(e.target.value)} 
+                />
               </div>
               <div className={cx('form-group')}>
                 <label>Utm Content</label>
-                <input type="text" placeholder="content campaign" />
+                <input 
+                  type="text" 
+                  placeholder="content campaign" 
+                  value={utmContent}
+                  onChange={(e) => setUtmContent(e.target.value)} 
+                />
               </div>
             </div>
           </div>
@@ -106,7 +173,12 @@ const CreateLinkStep1 = () => {
           </label>
           {shortenLink && (
             <div className={cx('shorten-input')}>
-              <input type="text" placeholder="Link Short" />
+              <input 
+                type="text" 
+                placeholder="Link Short" 
+                value={optimizedLink}
+                onChange={(e) => setOptimizedLink(e.target.value)} 
+              />
             </div>
           )}
         </div>
@@ -131,16 +203,14 @@ const CreateLinkStep1 = () => {
         </div>
 
         <div className={cx('action-buttons')}>
-        <Link to={config.routes.listCampaigns}>
-
-          <button className={cx('btn', 'btn-secondary')}>Back</button>
+          <Link to={config.routes.listCampaigns}>
+            <button className={cx('btn', 'btn-secondary')}>Back</button>
           </Link>
-          <button className={cx('btn', 'btn-primary')} onClick={openModal}>Continue</button>
+          <button className={cx('btn', 'btn-primary')} onClick={handleCreateLink}>Continue</button>
         </div>
       </div>
-      <CreateLinkStep2 isOpen={isModalOpen} onRequestClose={closeModal} />
+      <CreateLinkStep2 isOpen={isModalOpen} onRequestClose={closeModal} responseData={response}/>
     </div>
-    
   );
 };
 

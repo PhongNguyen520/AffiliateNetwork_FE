@@ -35,7 +35,7 @@ function Header() {
           <nav>
             <ul>
               <li>
-                <Link to={config.routes.overviewPublisher}>
+                <Link to={config.routes.statistic}>
                   <span href="#">Overview</span>
                 </Link>
               </li>
@@ -56,7 +56,7 @@ function Header() {
               </li>
 
               <li>
-                <Link to={config.routes.overviewPublisher}>
+                <Link to={config.routes.manageLink}>
                   <span href="#">Links</span>
                 </Link>
               </li>

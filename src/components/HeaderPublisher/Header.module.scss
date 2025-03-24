@@ -5,7 +5,7 @@
     display: flex;
     justify-content: center;
     img {
-      height: 120px;
+      height: 80px;
       object-fit: contain;
     }
 
@@ -38,13 +38,9 @@
           font-weight: normal;
           position: relative;
           &:hover {
-              color: #161513;
+            color: #161513;
+            cursor: pointer;
           }
-        }
-
-        &:hover {
-          background-color: #D6D9DD;
-          cursor: pointer;
         }
       }
     }
@@ -229,9 +225,6 @@
   margin: 0;
 }
 
-
-
-
 .login-container {
   display: flex;
   align-items: center;
@@ -250,22 +243,22 @@
   font-weight: 500;
   transition: all 0.3s ease;
   box-shadow: 0 2px 4px rgba(82, 113, 255, 0.3);
-  
+
   &:hover {
     background-color: #4060ee;
     transform: translateY(-2px);
     box-shadow: 0 4px 8px rgba(82, 113, 255, 0.4);
   }
-  
+
   &:active {
     transform: translateY(0);
     box-shadow: 0 1px 2px rgba(82, 113, 255, 0.4);
   }
-  
+
   i {
     font-size: 16px;
   }
-  
+
   .login-text {
     font-size: 16px;
   }
@@ -282,16 +275,16 @@
   text-decoration: none;
   font-weight: 500;
   transition: all 0.3s ease;
-  
+
   &:hover {
     background-color: rgba(82, 113, 255, 0.1);
     transform: translateY(-2px);
   }
-  
+
   &:active {
     transform: translateY(0);
   }
-  
+
   .register-text {
     font-size: 16px;
   }

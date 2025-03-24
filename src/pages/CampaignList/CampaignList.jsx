@@ -172,14 +172,6 @@ function CampaignList() {
     }
   };
 
-  const removeFilter = (key) => {
-    const updatedFilters = { ...activeFilters };
-    delete updatedFilters[key];
-    setActiveFilters(updatedFilters);
-
-    setTempFilter({ ...tempFilter, [key]: "All" });
-  };
-
   const handleResetFilters = () => {
     setFilter({
       category: "All",
@@ -358,7 +350,7 @@ function CampaignList() {
               const progress = Math.max(0, Math.min(100, (elapsed / totalDuration) * 100));
               
               return (
-                <Link key={campaign.id} to={`/campaign/${campaign.id}`} state={{ key: campaign.id }}>
+                <Link className={cx("campaign-card")} key={campaign.id} to={`/campaign/${campaign.id}`} state={{ key: campaign.id }}>
                   <div className={cx("campaign-item")}>
                     <div className={cx("campaign-image")}>
                       <img src={campaign.image} alt={campaign.campaignName} />
