@@ -25,6 +25,8 @@ const routes = {
     trafficReport: '/traffic-report',
     listPublisherAmin: '/list-publisher',
     listPublisherAdvertiser: '/list-publisher',
+    manageLink: '/manage-link',
+    linkOfCampaign: '/list-link',
 }
 
 export default routes;

@@ -2,19 +2,17 @@ import React, { useState } from "react";
 import classNames from "classnames/bind";
 import styles from "./CreateLinkStep2.module.scss";
 import Modal from "react-modal";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import config from "../../../../config";
 
 const cx = classNames.bind(styles);
 
-const CreateLinkStep2 = ({ isOpen, onRequestClose }) => {
-  const [fullLink, setFullLink] = useState(
-    "https://go.isclix.com/deep_link/v6/66246"
-  );
-  const [shortenLink, setShortenLink] = useState(
-    "https://shorten.asia/aG1b3DtB"
-  );
-
+const CreateLinkStep2 = ({ isOpen, onRequestClose, responseData }) => {
+  const fullLink = responseData?.urlOptimize || "No full link available";
+  const shortenLink = responseData?.urlShorten || "No shorten link available";
+  const navigate = useNavigate();
+  console.log(responseData);
+  
   return (
     <Modal
       isOpen={isOpen}
@@ -51,10 +49,6 @@ const CreateLinkStep2 = ({ isOpen, onRequestClose }) => {
             <div className={cx("step-circle")}>03</div>
             <div className={cx("step-title")}>Create Content</div>
           </div>
-          <div className={cx("step")}>
-            <div className={cx("step-circle")}>04</div>
-            <div className={cx("step-title")}>Post</div>
-          </div>
         </div>
 
         <div className={cx("content-section")}>
@@ -65,7 +59,7 @@ const CreateLinkStep2 = ({ isOpen, onRequestClose }) => {
             </div>
             <div className={cx("link-group")}>
               <label className={cx("link-label")}>Shorten Link</label>
-              <div className={cx("link-value")}>{shortenLink}</div>
+              <div className={cx("link-value")}><a>{shortenLink}</a></div>
             </div>
           </div>
         </div>
@@ -77,9 +71,11 @@ const CreateLinkStep2 = ({ isOpen, onRequestClose }) => {
           >
             Back
           </button>
-          <Link to={config.routes.createLinkStep3}>
-            <button className={cx("btn", "btn-primary")}>Continue</button>
-          </Link>
+          {/* <Link to={config.routes.createLinkStep3, }> */}
+            <button className={cx("btn", "btn-primary")}  onClick={() => navigate(config.routes.createLinkStep3, {
+                state: { responseData }, 
+              })} >Continue</button>
+          {/* </Link> */}
         </div>
       </div>
     </Modal>

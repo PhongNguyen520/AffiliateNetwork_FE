@@ -13,6 +13,9 @@ import {
   FaLink,
 } from "react-icons/fa";
 import images from "../../assets/images";
+import { Link } from "react-router-dom";
+import config from "../../config";
+import { grey } from "@mui/material/colors";
 
 const cx = classNames.bind(styles);
 
@@ -53,10 +56,12 @@ function SidebarAdvertiser() {
         )}
 
         <Menu iconShape="circle">
+        <Link to={config.routes.overviewAdvertiser} style={{textDecoration: "none", color: "#333333"}}>
           <MenuItem icon={<FaGem />}>Overview</MenuItem>
-
-          <MenuItem icon={<FaRocket />}>Campaigns</MenuItem>
-
+          </Link>
+          <Link to={config.routes.createCampaign} style={{textDecoration: "none", color: "#333333"}}>
+            <MenuItem icon={<FaRocket />}>Campaigns</MenuItem>
+          </Link>
           <MenuItem icon={<FaUsers />}>Publishers</MenuItem>
 
           <SubMenu

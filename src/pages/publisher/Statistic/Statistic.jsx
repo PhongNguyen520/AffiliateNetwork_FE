@@ -285,26 +285,6 @@ const Statistic = () => {
             <ConversionsChart />
           </div>
         </div>
-
-        {/* Campaign Tables Section */}
-        <div className={cx('campaign-tables')}>
-          <h2 className={cx('table-section-title')}>Total Campaigns</h2>
-          
-          <div className={cx('campaign-table-section')}>
-            <h3 className={cx('table-status')}>PAUSED</h3>
-            <CampaignTable campaigns={pausedCampaigns} />
-          </div>
-          
-          <div className={cx('campaign-table-section')}>
-            <h3 className={cx('table-status')}>REVIEW</h3>
-            <CampaignTable campaigns={reviewCampaigns} />
-          </div>
-          
-          <div className={cx('campaign-table-section')}>
-            <h3 className={cx('table-status')}>RUNNING</h3>
-            <CampaignTable campaigns={runningCampaigns} />
-          </div>
-        </div>
       </main>
 
     </div>
