@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Card, Container, Row, Col, Button, ListGroup } from "react-bootstrap";
 import { useNavigate, useParams } from "react-router-dom";
 import { Heart } from "lucide-react";
 import { requestsPrivate } from "../../../../utils/requests";
 import config from "../../../../config";
+import Cookies from "js-cookie";
 
 const CAMPAIGN_DETAIL_URL = "campaign";
 const JOIN_CAMPAIGN_URL = "campaignmember";
@@ -14,8 +15,15 @@ const CampaignDetailsPage = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [filter, setFilter] = useState("all");
-  const [hasJoined, setHasJoined] = useState(true);
+  const [hasJoined, setHasJoined] = useState(false);
   const navigate = useNavigate(); 
+
+
+  useEffect(() => {
+    if (!Cookies.get('access_token')) {
+      navigate(config.routes.login); 
+    }
+  }, [navigate]);
 
   const reviews = [
     { name: "Nguyen thi phi Lel", rating: 5, date: "21-02-2025", comment: "" },
@@ -49,7 +57,11 @@ const CampaignDetailsPage = () => {
         if (!response.data) {
           throw new Error("Failed to fetch campaign data");
         }
-        setCampaign(response.data.data);
+
+        var data = response.data.data;
+        console.log(response);
+        setHasJoined(data.isJoin);
+        setCampaign(data);
       } catch (err) {
         setError(err.message);
       } finally {
@@ -65,9 +77,6 @@ const CampaignDetailsPage = () => {
         `${JOIN_CAMPAIGN_URL}/${campaignId}/join`
       );
       if (response.data && response.data.code === 200) {
-        alert("You have successfully joined the campaign!");
-        // const updatedCampaignResponse = await requestsPrivate.get(`${CAMPAIGN_DETAIL_URL}/${campaignId}`);
-        // setCampaign(updatedCampaignResponse.data.data);
         setHasJoined(true);
       } else {
         throw new Error(response.data.message || "Failed to join the campaign");
@@ -163,17 +172,9 @@ const CampaignDetailsPage = () => {
             <span>{campaign.enrollCount} Participants</span>
           </div>
 
-          <Button
-            variant="warning"
-            className="mt-3 fw-bold"
-            style={{ backgroundColor: "#FF6B1E", border: "none" }}
-            onClick={handleJoinCampaign}
-            disabled={hasJoined} 
-          >
-            {hasJoined ? "Joined" : "JOIN CAMPAIGN"}
-          </Button>
+       
 
-          {hasJoined && (
+          {hasJoined ? (
             <Button
               variant="success"
               className="mt-3 fw-bold ms-2"
@@ -182,9 +183,18 @@ const CampaignDetailsPage = () => {
                 state: { campaign }, 
               })} 
             >
-              Create Link
+              CREATE LINK
             </Button>
-          )}
+          ):
+          (   <Button
+            variant="warning"
+            className="mt-3 fw-bold"
+            style={{ backgroundColor: "#FF6B1E", border: "none" }}
+            onClick={handleJoinCampaign}
+            disabled={hasJoined} 
+          >
+            JOIN CAMPAIGN
+          </Button>)}
         </Col>
       </Row>
 

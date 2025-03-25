@@ -9,7 +9,8 @@ import Cookies from "js-cookie";
 
 const AppContent = () => {
 
-  const { auth  } = useContext(AuthContext);
+  const { auth, loading  } = useContext(AuthContext);
+
   const accessToken = Cookies.get("access_token");
 
 
@@ -39,12 +40,16 @@ const AppContent = () => {
     return roleRoutesMap[auth?.roleName] || [];
   };
 
+  if (accessToken && loading) {
+    return <div></div> 
+  }
+
+
   return (
     <Routes>
-      
       {publicRoutes.map(renderRoute)}
-
-      {accessToken && (
+    
+      {accessToken && auth?.roleName && (
         <Route element={<RequireAuth allowedRoles={[auth?.roleName]}/>}>
           {getRoleRoutes().map(renderRoute)}
         </Route>
