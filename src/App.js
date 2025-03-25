@@ -8,8 +8,11 @@ import { AuthContext } from "./providers/AuthProvider";
 import Cookies from "js-cookie";
 
 const AppContent = () => {
+
   const { auth, loading  } = useContext(AuthContext);
+
   const accessToken = Cookies.get("access_token");
+
 
   const renderRoute = (route, index) => {
     const Layout = route.layout === null ? Fragment : route.layout;
