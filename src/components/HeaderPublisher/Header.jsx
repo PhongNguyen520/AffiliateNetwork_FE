@@ -50,7 +50,7 @@ function Header() {
                 </Link>
               </li>
               <li>
-                <Link to={config.routes.overviewPublisher}>
+                <Link to={config.routes.publisherConversion}>
                   <span href="#">Reports</span>
                 </Link>
               </li>

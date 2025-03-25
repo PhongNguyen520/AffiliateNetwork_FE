@@ -6,6 +6,7 @@ export const AuthContext = createContext(undefined);
 
 export function AuthProvider({ children }) {
     const [auth, setAuth] = useState(null);
+    const [loading, setLoading] = useState(true)
     const [accessToken] = useState(Cookies.get('access_token'));
     
     console.log(accessToken);
@@ -27,8 +28,13 @@ export function AuthProvider({ children }) {
             } catch (error) {
                 console.error('Error decoding token:', error);
                 Cookies.remove('access_token');
+                setAuth(null);
             }
         }
+        else {
+            setAuth(null); 
+        }
+        setLoading(false)
     }, [accessToken]);
 
 
@@ -37,6 +43,7 @@ export function AuthProvider({ children }) {
         accessToken,
         auth,
         setAuth,
+        loading,
     };
 
     return (

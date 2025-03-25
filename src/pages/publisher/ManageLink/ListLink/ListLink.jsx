@@ -47,6 +47,8 @@ function ListLink() {
         if (!response.data) {
           throw new Error("Failed to fetch links data")
         }
+        console.log(response.data.data);
+        
         setLinksData(response.data.data)
       } catch (err) {
         setError(err.message)
