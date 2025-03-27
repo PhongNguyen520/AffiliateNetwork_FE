@@ -1,52 +1,32 @@
-import React, { useState, useEffect, useContext } from "react";
-import { Card, Container, Row, Col, Button, ListGroup } from "react-bootstrap";
+import React, { useState, useEffect } from "react";
+import { Container, Row, Col, Button, Badge } from "react-bootstrap";
 import { useNavigate, useParams } from "react-router-dom";
-import { Heart } from "lucide-react";
 import { requestsPrivate } from "../../../../utils/requests";
 import config from "../../../../config";
 import Cookies from "js-cookie";
+import classNames from "classnames/bind";
+import styles from './CampaignsDetails.module.scss';
+import { Spin } from "antd";
+import { LoadingOutlined } from "@ant-design/icons";
+import { Calendar, Users, Globe, Tag, Wallet } from "lucide-react";
+
+const cx = classNames.bind(styles);
 
 const CAMPAIGN_DETAIL_URL = "campaign";
 const JOIN_CAMPAIGN_URL = "campaignmember";
-
 const CampaignDetailsPage = () => {
   const { campaignId } = useParams();
   const [campaign, setCampaign] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [filter, setFilter] = useState("all");
   const [hasJoined, setHasJoined] = useState(false);
   const navigate = useNavigate(); 
-
 
   useEffect(() => {
     if (!Cookies.get('access_token')) {
       navigate(config.routes.login); 
     }
   }, [navigate]);
-
-  const reviews = [
-    { name: "Nguyen thi phi Lel", rating: 5, date: "21-02-2025", comment: "" },
-    {
-      name: "Nguyen Thị Huong Giang",
-      rating: 5,
-      date: "09-01-2025",
-      comment: "",
-    },
-    { name: "Nguyen thị Ngan", rating: 5, date: "18-12-2024", comment: "" },
-    {
-      name: "dang tien dung",
-      rating: 5,
-      date: "18-12-2024",
-      comment: "dat hay",
-    },
-    {
-      name: "Do Viet Dat",
-      rating: 1,
-      date: "22-01-2025",
-      comment: "Update trạng thái quá lâu Mai không duyệt tiền.",
-    },
-  ];
 
   useEffect(() => {
     const fetchCampaign = async () => {
@@ -57,9 +37,9 @@ const CampaignDetailsPage = () => {
         if (!response.data) {
           throw new Error("Failed to fetch campaign data");
         }
-
-        var data = response.data.data;
         console.log(response);
+        
+        const data = response.data.data;
         setHasJoined(data.isJoin);
         setCampaign(data);
       } catch (err) {
@@ -86,274 +66,163 @@ const CampaignDetailsPage = () => {
     }
   };
 
-  const filteredReviews =
-    filter === "all" ? reviews : reviews.filter((r) => r.rating === filter);
-
-  if (loading) return <div className="text-center p-5">Loading...</div>;
-  if (error)
-    return <div className="text-center p-5 text-danger">Error: {error}</div>;
-  if (!campaign)
-    return <div className="text-center p-5">No campaign data available</div>;
-
-  const renderStars = (rating) => {
-    const fullStars = Math.floor(rating);
-    const stars = [];
-
-    for (let i = 0; i < 5; i++) {
-      if (i < fullStars) {
-        stars.push(
-          <span key={i} className="text-warning">
-            ★
-          </span>
-        );
-      } else {
-        stars.push(
-          <span key={i} className="text-muted">
-            ★
-          </span>
-        );
-      }
-    }
-
-    return stars;
-  };
-
   const formatDate = (dateString) => {
     const date = new Date(dateString);
     return `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`;
   };
 
+
+  const antIcon = <LoadingOutlined style={{ fontSize: 48, color: "#FF6B1E" }} spin />;
+
+  if (loading) return (
+    <div className={cx("loading-container")}>
+      <Spin indicator={antIcon} />
+    </div>
+  );
+
+  if (error) return <div className={cx("error-message")}>Error: {error}</div>;
+  if (!campaign) return <div className={cx("no-data")}>No campaign data available</div>;
+
   return (
-    <Container>
-      <Row className="mb-4">
-        <Col md={5}>
-          <div style={{ position: "relative" }}>
+    <Container className={cx("campaign-container")}>
+      <Row className={cx("campaign-header")}>
+        <Col md={5} className={cx("image-col")}>
+          <div className={cx("image-wrapper")}>
             <img
               src={campaign.image}
               alt={campaign.campaignName}
-              className="img-fluid w-100"
-              style={{ objectFit: "cover" }}
+              className={cx("campaign-image")}
             />
-            <div className="position-absolute top-0 end-0 p-2">
-              <Heart size={24} />
-            </div>
+            <Badge bg="success" className={cx("status-badge")}>
+              {campaign.status}
+            </Badge>
           </div>
         </Col>
-        <Col md={7}>
-          <h2>{campaign.campaignName}</h2>
-          <div>
-            {renderStars(4.0)}
-            <span className="ms-2">4.0 (200 vote)</span>
-          </div>
-          <p className="mt-3">{campaign.description}</p>
-          <p>{campaign.introduction}</p>
-
-          <div className="d-flex justify-content-between mt-4">
-            <div>
-              <p className="mb-1 text-muted">Commission Rate:</p>
-              <p className="fw-bold">10% on bill</p>
-            </div>
-            <div>
-              <p className="mb-1 text-muted">Payout Method:</p>
-              <p className="fw-bold">{campaign.payoutModelName.join(", ")}</p>
-            </div>
-          </div>
-
-          <div className="d-flex align-items-center mt-2">
-            <i className="bi bi-calendar me-2"></i>
-            <span>
-              {formatDate(campaign.startDate)} -{" "}
-              {campaign.endDate ? formatDate(campaign.endDate) : "Now"}
+        
+        <Col md={7} className={cx("info-col")}>
+          <div className={cx("campaign-meta")}>
+            <span className={cx("category")}>
+              <Tag size={16} /> {campaign.categoryName}
             </span>
           </div>
-
-          <div className="d-flex align-items-center mt-2">
-            <i className="bi bi-people me-2"></i>
-            <span>{campaign.enrollCount} Participants</span>
+          
+          <h1 className={cx("campaign-title")}>{campaign.campaignName}</h1>
+          
+          <p className={cx("campaign-intro")}>{campaign.introduction}</p>
+          <p className={cx("campaign-desc")}>{campaign.description}</p>
+          
+          <div className={cx("stats-grid")}>
+            <div className={cx("stat-item")}>
+              <div className={cx("stat-icon")}>
+                <Wallet size={20} />
+              </div>
+              <div>
+                <div className={cx("stat-label")}>Budget</div>
+                <div className={cx("stat-value")}>{campaign.budget.toLocaleString()} VND</div>
+              </div>
+            </div>
+            
+            <div className={cx("stat-item")}>
+              <div className={cx("stat-icon")}>
+                <Tag size={20} />
+              </div>
+              <div>
+                <div className={cx("stat-label")}>Conversion</div>
+                <div className={cx("stat-value")}>{(campaign.conversionRate * 100).toFixed(1)}%</div>
+              </div>
+            </div>
+            
+            <div className={cx("stat-item")}>
+              <div className={cx("stat-icon")}>
+                <Users size={20} />
+              </div>
+              <div>
+                <div className={cx("stat-label")}>Participants</div>
+                <div className={cx("stat-value")}>{campaign.enrollCount}</div>
+              </div>
+            </div>
+            
+            <div className={cx("stat-item")}>
+              <div className={cx("stat-icon")}>
+                <Calendar size={20} />
+              </div>
+              <div>
+                <div className={cx("stat-label")}>Duration</div>
+                <div className={cx("stat-value")}>
+                  {formatDate(campaign.startDate)} - {formatDate(campaign.endDate)}
+                </div>
+              </div>
+            </div>
           </div>
-
-       
-
+          
           {hasJoined ? (
             <Button
-              variant="success"
-              className="mt-3 fw-bold ms-2"
-              style={{ backgroundColor: "#28a745", border: "none" }}
-              onClick={() => navigate(config.routes.createLinkStep1, {
-                state: { campaign }, 
-              })} 
+              className={cx("action-button", "create-btn")}
+              onClick={() => navigate(config.routes.createLinkStep1, { state: { campaign } })}
             >
               CREATE LINK
             </Button>
-          ):
-          (   <Button
-            variant="warning"
-            className="mt-3 fw-bold"
-            style={{ backgroundColor: "#FF6B1E", border: "none" }}
-            onClick={handleJoinCampaign}
-            disabled={hasJoined} 
-          >
-            JOIN CAMPAIGN
-          </Button>)}
+          ) : (
+            <Button
+              className={cx("action-button", "join-btn")}
+              onClick={handleJoinCampaign}
+              disabled={hasJoined}
+            >
+              JOIN CAMPAIGN
+            </Button>
+          )}
         </Col>
       </Row>
 
-      <div className="border-bottom mb-4">
-        <ul className="nav">
-          <li className="nav-item">
-            <a className="nav-link active" href="#">
-              Overview
-            </a>
-          </li>
-          <li className="nav-item">
-            <a className="nav-link" href="#">
-              Policy
-            </a>
-          </li>
-          <li className="nav-item">
-            <a className="nav-link" href="#">
-              Commission
-            </a>
-          </li>
-          <li className="nav-item">
-            <a className="nav-link" href="#">
-              Conditions
-            </a>
-          </li>
-          <li className="nav-item">
-            <a className="nav-link" href="#">
-              Feedbacks
-            </a>
-          </li>
-        </ul>
-      </div>
-
-      {/* Campaign details section */}
-      <div className="mb-4">
-        <h4 className="fw-bold">{campaign.campaignName} - Unlimited Sale</h4>
-        <p className="mt-3">
-          From the passion of bringing quality products with the best value to
-          consumers. {campaign.campaignName} was born with the desire to create
-          a top shopping event, harmoniously connecting brands and customers,
-          between needs and opportunities.
-        </p>
-
-        <div className="mt-4">
-          <h5 className="fw-bold">Important information of the campaign:</h5>
-          <p className="mt-3">
-            Note: The orders that publishers have just clicked on will be orders
-            generated on the system. AT will return the order status twice a
-            week on every Monday and Thursday. (The average approval rate of the
-            campaign is from 65-70% of the number of orders generated).
-          </p>
-          <p>
-            In case customers have problems with the discount code or cannot
-            complete the order = Please fill out the Incident Report form: Here,
-            the AT team will respond within 24 hours to support you!
-          </p>
-          <h5 className="fw-bold mt-4">Target Customer:</h5>
-          <p className="mt-2">{campaign.targetCustomer}</p>{" "}
-          {/* Đối tượng khách hàng từ API */}
-          <p>
-            Primary focus on tech-savvy shoppers aged 25-45 with disposable
-            income, interested in electronics, home goods, and fashion.
-            Secondary focus on bargain hunters across all demographics.
-          </p>
-          <h5 className="fw-bold mt-4">
-            ***SPECIAL: {campaign.campaignName} SUPER OFFER
-          </h5>
-          <ul className="mt-2">
-            <li>
-              Pre-Black Friday (20/11-27/11): Commission increased by 1.5x for
-              all successful orders
-            </li>
-            <li>
-              Black Friday Official (28/11-29/11): Commission increased by 2x
-              for all successful orders
-            </li>
-            <li>
-              Cyber Monday (02/12): Commission increased by 1.8x for all
-              successful orders
-            </li>
-            <li>
-              Additional bonus of 5,000,000 VND for Top 5 Publishers with the
-              highest sales in the entire campaign
-            </li>
-          </ul>
-          <h5 className="fw-bold mt-4">
-            ***GUIDE TO OPTIMIZE CAMPAIGN PERFORMANCE
-          </h5>
-          <ul className="mt-2">
-            <li>
-              Focus on promoting during golden hours: 12:00-14:00 and
-              20:00-22:00 daily
-            </li>
-            <li>Prioritize using Deep Link to increase conversion rate</li>
-            <li>
-              Combine with price comparison content to increase credibility
-            </li>
-            <li>
-              Use Social Media channels during the 19:00-21:00 time frame to
-              reach the largest number of users
-            </li>
-          </ul>
-          <h5 className="fw-bold mt-4">IMPLEMENTATION TIME</h5>
-          <ul className="mt-2">
-            <li>Pre-Black Friday: November 20 - November 27, 2025</li>
-            <li>Black Friday: November 28 - November 29, 2025</li>
-            <li>Week-end Sale: November 30 - December 1, 2025</li>
-            <li>Cyber Monday: December 2, 2025</li>
-            <li>Extended Sale: December 3 - December 5, 2025</li>
-          </ul>
-        </div>
-      </div>
-
-      {/* Reviews & Ratings Section */}
-      <div className="container mt-4">
-        <h4 className="mb-3">Reviews & Ratings</h4>
-
-        <div className="btn-group mb-3">
-          {["All", 5, 4, 3, 2, 1].map((star, index) => (
-            <Button
-              key={index}
-              variant={
-                filter === star || (filter === "all" && star === "All")
-                  ? "warning"
-                  : "outline-warning"
-              }
-              onClick={() => setFilter(star === "All" ? "all" : star)}
-            >
-              {star}
-              {typeof star === "number" ? "*" : ""}
-            </Button>
-          ))}
-        </div>
-
-        <div className="row">
-          {filteredReviews.map((review, index) => (
-            <div key={index} className="col-md-6 mb-3">
-              <Card border="warning">
-                <Card.Body>
-                  <Card.Title>{review.name}</Card.Title>
-                  <Card.Subtitle className="mb-2 text-muted">
-                    {review.date}
-                  </Card.Subtitle>
-                  <div className="text-warning">
-                    {Array(review.rating).fill("★").join("")}
-                  </div>
-                  {review.comment && (
-                    <Card.Text className="mt-2">{review.comment}</Card.Text>
-                  )}
-                </Card.Body>
-              </Card>
+      <Row className={cx("campaign-details")}>
+        <Col md={8}>
+          <section className={cx("detail-section")}>
+            <h3 className={cx("section-title")}>
+              <Globe size={20} className="me-2" />
+              Campaign Details
+            </h3>
+            <div className={cx("section-content")}>
+              <h4 className={cx("subsection-title")}>Policy</h4>
+              <p className={cx("subsection-text")}>{campaign.policy}</p>
+              
+              <h4 className={cx("subsection-title")}>Target Audience</h4>
+              <p className={cx("subsection-text")}>{campaign.targetCustomer}</p>
+              
+              <h4 className={cx("subsection-title")}>Coverage Zone</h4>
+              <p className={cx("subsection-text")}>{campaign.zone}</p>
             </div>
-          ))}
-        </div>
-
-        <Button variant="link" className="text-warning mt-3">
-          See more
-        </Button>
-      </div>
+          </section>
+        </Col>
+        
+        <Col md={4} className={cx("website-col")}>
+          {campaign.websiteLink && (
+            <div className={cx("website-card")}>
+              <h4 className={cx("website-title")}>Official Website</h4>
+              <a 
+                href={campaign.websiteLink} 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className={cx("website-link")}
+              >
+                {campaign.websiteLink.replace(/(^\w+:|^)\/\//, '')}
+              </a>
+            </div>
+          )}
+          
+          {campaign.payoutModelName && campaign.payoutModelName.length > 0 && (
+            <div className={cx("payout-card")}>
+              <h4 className={cx("payout-title")}>Payout Models</h4>
+              <ul className={cx("payout-list")}>
+                {campaign.payoutModelName.map((model, index) => (
+                  <li key={index} className={cx("payout-item")}>
+                    {model}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+        </Col>
+      </Row>
     </Container>
   );
 };

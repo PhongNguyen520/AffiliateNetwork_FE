@@ -8,6 +8,8 @@ import { Link, useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
 import { jwtDecode } from "jwt-decode";
 import config from "../../../config";
+import { Spin } from "antd"; 
+import { LoadingOutlined } from "@ant-design/icons";
 
 const cx = classNames.bind(styles);
 const LOGIN_URL = "auth/login";
@@ -21,6 +23,7 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -28,6 +31,8 @@ const Login = () => {
       return;
     }
 
+    setLoading(true); 
+    setError("");
     try {
       const response = await requestsPrivate.post(LOGIN_URL, {
         userName: username,
@@ -63,11 +68,17 @@ const Login = () => {
       setError(err.response.data.message);
       Cookies.remove("access_token");
     } finally {
+      setLoading(false);
     }
   };
-
+  const antIcon = <LoadingOutlined style={{ fontSize: 48, color: "#1890ff" }} spin />;
   return (
     <div className={cx("auth-page")}>
+      {loading && (
+        <div className={cx("loading-overlay")}>
+          <Spin indicator={antIcon} className={cx("loading-spinner")} />
+        </div>
+      )}
       <div className={cx("auth-container")}>
         <div className={cx("auth-form")}>
           <div className={cx("form-content")}>
