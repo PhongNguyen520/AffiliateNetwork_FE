@@ -13,6 +13,8 @@ import {
   FaLink,
 } from "react-icons/fa";
 import images from "../../assets/images";
+import config from "../../config";
+import { Link } from "react-router-dom";
 
 const cx = classNames.bind(styles);
 
@@ -53,12 +55,25 @@ function SidebarAdmin() {
         )}
 
         <Menu iconShape="circle">
-          <MenuItem icon={<FaGem />}>Overview</MenuItem>
+          <Link
+            to={config.routes.overviewAdmin}
+            style={{ textDecoration: "none", color: "#333333" }}
+          >
+            <MenuItem icon={<FaGem />}>Overview</MenuItem>
+          </Link>
+          <Link
+            to={config.routes.listCampaignsAdmin}
+            style={{ textDecoration: "none", color: "#333333" }}
+          >
+            <MenuItem icon={<FaRocket />}>Campaigns</MenuItem>
+          </Link>
 
-          <MenuItem icon={<FaRocket />}>Campaigns</MenuItem>
-
-          <MenuItem icon={<FaUsers />}>Publishers</MenuItem>
-
+          <Link
+            to={config.routes.listAccount}
+            style={{ textDecoration: "none", color: "#333333" }}
+          >
+            <MenuItem icon={<FaUsers />}>Account</MenuItem>
+          </Link>
           <MenuItem icon={<FaLink />}>Links</MenuItem>
           <SubMenu
             title="Reports"

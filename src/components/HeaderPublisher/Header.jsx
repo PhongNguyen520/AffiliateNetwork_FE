@@ -44,11 +44,11 @@ function Header() {
                   <span href="#">Campaigns</span>
                 </Link>
               </li>
-              <li>
+              {/* <li>
                 <Link to={config.routes.overviewPublisher}>
                   <span href="#">Performance</span>
                 </Link>
-              </li>
+              </li> */}
               <li>
                 <Link to={config.routes.publisherConversion}>
                   <span href="#">Reports</span>

@@ -3,6 +3,9 @@ import classNames from "classnames/bind";
 import styles from "./CreateCampaign.module.scss";
 import { Plus, Upload } from "lucide-react";
 import { requestsPrivate } from "../../../../utils/requests";
+import { Link } from "react-router-dom";
+import { Spin } from "antd";
+import config from "../../../../config";
 
 const cx = classNames.bind(styles);
 
@@ -15,15 +18,15 @@ const CreateCampaign = () => {
   const [categories, setCategories] = useState([]);
   const [showSuccessPopup, setShowSuccessPopup] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [dataResponse, setDataResponse] = useState();
+  const [errors, setErrors] = useState({
+    budget: "",
+  });
   const [campaign, setCampaign] = useState({
     name: "",
-    type: "",
     category: "",
     website: "",
-    commissionType: "FIX",
     commissionValue: "",
-    maxCommissionRate: "",
-    maxCommissionValue: "",
     description: "",
     introduction: "",
     policy: "",
@@ -31,28 +34,33 @@ const CreateCampaign = () => {
     zone: "",
     startDate: "",
     endDate: "",
-    image: "",
+    image: null,
     payoutMethods: [],
+    budget: "",
   });
+  const [previewImage, setPreviewImage] = useState("");
 
   const handleChange = (e) => {
-    const { name, value, options } = e.target;
+    const { name, value } = e.target;
+    if (name === "budget") {
+      const numValue = parseFloat(value);
 
-    if (name === "payoutMethods") {
-      const selectedOptions = Array.from(options)
-        .filter((option) => option.selected)
-        .map((option) => option.value);
-
-      setCampaign((prev) => ({
-        ...prev,
-        [name]: selectedOptions,
-      }));
-    } else {
-      setCampaign((prev) => ({
-        ...prev,
-        [name]: value,
-      }));
+      if (isNaN(numValue) || numValue < 1000000) {
+        setErrors((prev) => ({
+          ...prev,
+          budget: "Budget must be at least 1,000,000 VND",
+        }));
+      } else {
+        setErrors((prev) => ({
+          ...prev,
+          budget: "",
+        }));
+      }
     }
+    setCampaign((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
   };
 
   useEffect(() => {
@@ -90,47 +98,79 @@ const CreateCampaign = () => {
     setIsLoading(true);
 
     try {
-      const campaignData = {
-        campaignName: campaign.name,
-        description: campaign.description,
-        introduction: campaign.introduction,
-        policy: campaign.policy,
-        image: campaign.image,
-        websiteLink: campaign.website,
-        targetCustomer: campaign.targetCustomer,
-        zone: campaign.zone,
-        startDate: campaign.startDate || new Date().toISOString(),
-        endDate:
-          campaign.endDate ||
-          new Date(
-            new Date().setMonth(new Date().getMonth() + 3)
-          ).toISOString(),
-        categoryId: campaign.category,
-        payoutModelsId: campaign.payoutMethods,
+      const formatDate = (dateString) => {
+        if (!dateString) return "";
+        const date = new Date(dateString);
+        return date.toISOString();
       };
 
+      const queryParams = new URLSearchParams();
+      queryParams.append("CampaignName", campaign.name);
+      queryParams.append("Description", campaign.description || "");
+      queryParams.append("Introduction", campaign.introduction || "");
+      queryParams.append("Policy", campaign.policy || "");
+      queryParams.append("WebsiteLink", campaign.website || "");
+      queryParams.append("TargetCustomer", campaign.targetCustomer || "");
+      queryParams.append("Zone", campaign.zone || "");
+      queryParams.append("ConversionRate", campaign.commissionValue);
+      queryParams.append("StartDate", formatDate(campaign.startDate));
+      queryParams.append("EndDate", formatDate(campaign.endDate));
+      queryParams.append("CategoryId", campaign.category);
+      queryParams.append("Budget", campaign.budget);
+
+      campaign.payoutMethods.forEach((id) => {
+        queryParams.append("PayoutModelsId", id);
+      });
+
+      const formData = new FormData();
+      if (campaign.image) {
+        formData.append("Image", campaign.image);
+      }
+
       const response = await requestsPrivate.post(
-        CREATE_CAMPAIGN_URL,
-        campaignData
+        `${CREATE_CAMPAIGN_URL}?${queryParams.toString()}`,
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
       );
 
       setShowSuccessPopup(true);
-
-      console.log("Campaign created successfully:", response.data);
+      console.log("Campaign created successfully:", response.data.data);
+      setDataResponse(response.data.data);
     } catch (error) {
       console.error("Error creating campaign:", error);
-      alert("Failed to create campaign. Please try again.");
+      if (error.response) {
+        const errorMessage =
+          error.response.data?.message ||
+          error.response.data?.title ||
+          "Failed to create campaign";
+
+        console.error("Error details:", error.response.data);
+        alert(`Error: ${errorMessage}`);
+      } else {
+        alert("Network error - Please check your connection");
+      }
     } finally {
       setIsLoading(false);
     }
   };
+
   const handleFileUpload = (e) => {
     const file = e.target.files[0];
     if (file) {
       setCampaign((prev) => ({
         ...prev,
-        image: file.name,
+        image: file,
       }));
+
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setPreviewImage(reader.result);
+      };
+      reader.readAsDataURL(file);
     }
   };
 
@@ -161,6 +201,14 @@ const CreateCampaign = () => {
 
   return (
     <div className={cx("create-campaign")}>
+      <Spin
+        spinning={isLoading}
+        fullscreen
+        size="large"
+        delay={300}
+        className="custom-spin"
+      />
+
       {showSuccessPopup && (
         <div className={cx("success-popup")}>
           <div className={cx("popup-content")}>
@@ -194,23 +242,30 @@ const CreateCampaign = () => {
               <button onClick={closePopup} className={cx("close-button")}>
                 Close
               </button>
-              <button className={cx("view-button")}>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="18"
-                  height="18"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
-                  <circle cx="12" cy="12" r="3"></circle>
-                </svg>
-                View
-              </button>
+              <Link
+                className={cx("campaign-card")}
+                key={dataResponse.id}
+                to={config.routes.overviewAdvertiser}
+                state={{ key: dataResponse.id }}
+              >
+                <button className={cx("view-button")}>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="18"
+                    height="18"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                    <circle cx="12" cy="12" r="3"></circle>
+                  </svg>
+                  View
+                </button>
+              </Link>
             </div>
           </div>
         </div>
@@ -221,20 +276,33 @@ const CreateCampaign = () => {
           <div className={cx("form-column")}>
             <div className={cx("upload-section")}>
               <div className={cx("upload-box")}>
-                <label
-                  htmlFor="campaign-image"
-                  className={cx("upload-label")}
-                  onChange={handleFileUpload}
-                >
-                  <div className={cx("upload-icon")}>
-                    <Upload size={40} color="#1E88E5" />
-                  </div>
-                  <div className={cx("upload-text")}>Browse Files</div>
+                <label htmlFor="campaign-image" className={cx("upload-label")}>
+                  {previewImage ? (
+                    <img
+                      src={previewImage}
+                      alt="Preview"
+                      className={cx("preview-image")}
+                    />
+                  ) : (
+                    <>
+                      <div className={cx("upload-icon")}>
+                        <Upload size={40} color="#1E88E5" />
+                      </div>
+                      <div className={cx("upload-text")}>Browse Files</div>
+                    </>
+                  )}
                 </label>
+                <input
+                  id="campaign-image"
+                  type="file"
+                  accept="image/*"
+                  onChange={handleFileUpload}
+                  style={{ display: "none" }}
+                />
               </div>
               {campaign.image && (
                 <div className={cx("selected-file")}>
-                  Selected: {campaign.image}
+                  Selected: {campaign.image.name}
                 </div>
               )}
             </div>
@@ -318,6 +386,27 @@ const CreateCampaign = () => {
                   ))}
                 </div>
               </div>
+
+              <div className={cx("form-group")}>
+                <label className={cx("input-label")}>
+                  <span className={cx("required")}>*</span>Budget (VND)
+                </label>
+                <input
+                  type="number"
+                  name="budget"
+                  value={campaign.budget}
+                  onChange={handleChange}
+                  className={cx("input-field", { error: errors.budget })}
+                  placeholder="Minimum 1,000,000 VND"
+                  required
+                  min="1000000"
+                  step="100000"
+                />
+                {errors.budget && (
+                  <div className={cx("error-message")}>{errors.budget}</div>
+                )}
+              </div>
+
               <div className={cx("form-group")}>
                 <label className={cx("input-label")}>
                   <span className={cx("required")}>*</span>Category
@@ -423,14 +512,10 @@ const CreateCampaign = () => {
             className={cx("submit-button")}
             disabled={isLoading}
           >
-            {isLoading ? (
-              "Creating..."
-            ) : (
-              <>
-                <Plus size={16} />
-                Create Campaign
-              </>
-            )}
+            <>
+              <Plus size={16} />
+              Create Campaign
+            </>
           </button>
         </div>
       </form>

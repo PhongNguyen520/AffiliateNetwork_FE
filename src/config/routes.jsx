@@ -27,6 +27,11 @@ const routes = {
     listPublisherAdvertiser: '/list-publisher',
     manageLink: '/manage-link',
     linkOfCampaign: '/list-link',
+    conversionDetail: '/conversion-detail/:linkId',
+    vnpaySuccess: '/overview/vnpay/success', 
+    vnpayFailed: '/overview/vnpay/failed',
+    shop: '/shop',
+    listAccount: '/list-account',
 }
 
 export default routes;

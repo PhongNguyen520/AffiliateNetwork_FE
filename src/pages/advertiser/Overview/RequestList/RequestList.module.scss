@@ -1,0 +1,54 @@
+.request-container{
+    padding: 1rem;
+    margin-top: 2rem;
+}
+
+.content-container {
+    padding: 20px;
+    flex: 1;
+    background-color: #ffffff;
+  }
+
+  .filter-card{
+    margin-bottom: 1rem;
+  }
+  
+  .header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    span {
+      font-weight: 600;
+      font-size: 1.5rem;
+      font-family: "Courier New", Courier, monospace;
+      text-transform: uppercase;
+    }
+  }
+  
+  .date-range {
+    display: flex;
+    flex-direction: column;
+    span{
+      font-weight: 700;
+      font-size: 0.8rem;
+      font-family: "Courier New", Courier, monospace;
+    }
+  }
+  
+  .select {
+    display: flex;
+    flex-direction: column;
+    span{
+      font-weight: 700;
+      font-size: 0.8rem;
+      font-family: "Courier New", Courier, monospace;
+    }
+  }
+  
+  
+  .button-create{
+     display: flex;
+     align-items: end;
+  }
+  
+  

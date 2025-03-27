@@ -6,6 +6,7 @@ const images = {
     defaultAvatar: require('./defaultAvatar.jpg'),
     introduction: require('./introduction.png'),
     optimize: require('./optimize.svg'),
+    product: require('./productshop.jpg'),
 }
 
 export default images;

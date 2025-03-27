@@ -209,7 +209,7 @@ function Overview() {
       <div className={cx("wrapper-box")}>
         <div className={cx("box")}>
           <div className={cx("radius", "welcome-message")}>
-            <h1>Welcome back, Mark Johnson</h1>
+            <h1>Welcome back, Michael Johnson</h1>
             <p>Glad to see you again! Ask me anything.</p>
             <div className={cx("arrow-right")}>
               <i class="bi bi-arrow-right-circle-fill"></i>
@@ -249,12 +249,6 @@ function Overview() {
                 <div className={cx("percentage")}>60%</div>
                 <p className={cx("details")}>Based on 120 reviews</p>
               </div>
-            </div>
-            <div className={cx("additional-info")}>
-              <p className={cx("info-text")}>
-                This metric indicates the overall satisfaction rate based on
-                user feedback across all campaigns.
-              </p>
             </div>
           </div>
         </div>

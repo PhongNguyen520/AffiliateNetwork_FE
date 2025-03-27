@@ -1,0 +1,178 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #f0f4f8 0%, #e6eaf0 100%);
+    font-family: 'Inter', sans-serif;
+    padding: 20px;
+  }
+  
+  .failed-card {
+    background-color: white;
+    border-radius: 16px;
+    box-shadow: 
+      0 15px 35px rgba(0, 0, 0, 0.05), 
+      0 5px 15px rgba(0, 0, 0, 0.05);
+    padding: 40px;
+    text-align: center;
+    max-width: 35%;
+    max-height: 80%;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+  
+    &:hover {
+      transform: scale(1.02);
+    }
+  }
+  
+  .logo-container {
+    margin-bottom: 20px;
+    img {
+      width: 100%;
+      object-fit: cover;
+      margin-bottom: 10px;
+    }
+  }
+  
+  .failed-icon {
+    color: #e53935;
+    width: 80px;
+    height: 80px;
+    margin-bottom: 20px;
+    position: relative;
+    z-index: 2;
+  }
+  
+  .failed-title {
+    color: #e53935;
+    font-size: 24px;
+    margin-bottom: 20px;
+    font-weight: 600;
+    position: relative;
+    z-index: 2;
+  }
+  
+  .transaction-details {
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 25px;
+    position: relative;
+    z-index: 2;
+    background-color: #fff5f5;
+  }
+  
+  .detail-item {
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 0;
+  }
+  
+  .detail-label {
+    color: #64748b;
+    font-weight: 500;
+  }
+  
+  .detail-value {
+    color: #1e293b;
+    font-weight: 600;
+  }
+  
+  .payment-method {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    padding: 15px;
+    margin-bottom: 25px;
+    position: relative;
+    z-index: 2;
+    background-color: #f8f9fa;
+  }
+  
+  .payment-icon {
+    width: 50px;
+    margin-right: 15px;
+  }
+  
+  .payment-text {
+    color: #1A73E8;
+    font-weight: 600;
+  }
+  
+  .action-buttons {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+  }
+  
+  .retry-btn {
+    background-color: #1A73E8;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 
+      background-color 0.3s ease, 
+      transform 0.2s ease;
+    position: relative;
+    z-index: 2;
+  
+    &:hover {
+      background-color: #1465cc;
+      transform: translateY(-2px);
+    }
+  
+    &:active {
+      transform: translateY(1px);
+    }
+  }
+  
+  .back-home-btn {
+    background-color: #f1f5f9;
+    color: #1e293b;
+    border: 1px solid #e2e8f0;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 
+      background-color 0.3s ease, 
+      transform 0.2s ease;
+    position: relative;
+    z-index: 2;
+  
+    &:hover {
+      background-color: #e2e8f0;
+      transform: translateY(-2px);
+    }
+  
+    &:active {
+      transform: translateY(1px);
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .failed-card {
+      margin: 0 15px;
+      padding: 30px 20px;
+      max-width: 90%;
+    }
+  
+    .action-buttons {
+      flex-direction: column;
+    }
+  
+    .failed-icon {
+      width: 60px;
+      height: 60px;
+    }
+  
+    .failed-title {
+      font-size: 20px;
+    }
+  }

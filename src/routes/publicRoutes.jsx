@@ -6,6 +6,7 @@ import Unauthorized from "../pages/unauthorized/Unauthorized";
 import Login from "../pages/Auth/Login/Login";
 import Register from "../pages/Auth/Register/Register";
 import PublisherLayout from "../layouts/Publisher/PublisherLayout";
+import Shop from "../pages/Shop/Shop";
 
 export const publicRoutes = [
   { path: config.routes.login, component: Login, layout:  null },
@@ -14,4 +15,5 @@ export const publicRoutes = [
   {  path: config.routes.listCampaigns, component: CampaignList, layout: null},
   {  path: config.routes.campaignDetail, component: CampaignDetailsPage, layout: PublisherLayout},
   { path: config.routes.unauthorized, component: Unauthorized, layout:  null },
+  { path: config.routes.shop, component: Shop, layout:  null },
 ];

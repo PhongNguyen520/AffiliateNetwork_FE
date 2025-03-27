@@ -1,107 +1,58 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { Card, Button } from "antd";
 import classNames from "classnames/bind";
 import styles from "./Overview.module.scss";
-import { DatePicker, Table, Select, Card, Row, Col, Button } from "antd";
-import { PlusOutlined } from "@ant-design/icons";
 import Diagram from "./Diagram/Diagram";
+import CampaignList from "./CampaignList/CampaignList";
+import CampaignModal from "./CampaignModal/CampaignModal";
+import RequestList from "./RequestList/RequestList";
+import { requestsPrivate } from "../../../utils/requests";
 
 const cx = classNames.bind(styles);
-const { RangePicker } = DatePicker;
-const { Option } = Select;
+const LIST_CAMPAIGN_OF_ADVERTISER = "campaign/advertiser_list";
 
-const dataSource = [
-  {
-    key: "1",
-    stt: 1,
-    ngayTao: "2023-10-01",
-    ten: "Yêu cầu 1",
-    moTa: "Mô tả yêu cầu 1",
-    thoiGianThucHien: "Không có dữ liệu",
-    trangThai: "Chờ xử lý",
-  },
-  {
-    key: "2",
-    stt: 2,
-    ngayTao: "2023-10-01",
-    ten: "Yêu cầu 1",
-    moTa: "Mô tả yêu cầu 1",
-    thoiGianThucHien: "Không có dữ liệu",
-    trangThai: "Chờ xử lý",
-  },
-  {
-    key: "3",
-    stt: 3,
-    ngayTao: "2023-10-01",
-    ten: "Yêu cầu 1",
-    moTa: "Mô tả yêu cầu 1",
-    thoiGianThucHien: "Không có dữ liệu",
-    trangThai: "Chờ xử lý",
-  },
-  {
-    key: "4",
-    stt: 4,
-    ngayTao: "2023-10-01",
-    ten: "Yêu cầu 1",
-    moTa: "Mô tả yêu cầu 1",
-    thoiGianThucHien: "Không có dữ liệu",
-    trangThai: "Chờ xử lý",
-  },
-  {
-    key: "5",
-    stt: 5,
-    ngayTao: "2023-10-01",
-    ten: "Yêu cầu 1",
-    moTa: "Mô tả yêu cầu 1",
-    thoiGianThucHien: "Không có dữ liệu",
-    trangThai: "Chờ xử lý",
-  },
-  {
-    key: "6",
-    stt: 6,
-    ngayTao: "2023-10-01",
-    ten: "Yêu cầu 1",
-    moTa: "Mô tả yêu cầu 1",
-    thoiGianThucHien: "Không có dữ liệu",
-    trangThai: "Chờ xử lý",
-  },
-];
-
-const columns = [
-  {
-    title: "STT",
-    dataIndex: "stt",
-    key: "stt",
-  },
-  {
-    title: "Ngày tạo",
-    dataIndex: "ngayTao",
-    key: "ngayTao",
-  },
-  {
-    title: "Tên",
-    dataIndex: "ten",
-    key: "ten",
-  },
-  {
-    title: "Mô tả",
-    dataIndex: "moTa",
-    key: "moTa",
-  },
-  {
-    title: "Thời gian thực hiện",
-    dataIndex: "thoiGianThucHien",
-    key: "thoiGianThucHien",
-  },
-  {
-    title: "Trạng thái",
-    dataIndex: "trangThai",
-    key: "trangThai",
-  },
-];
-
-function Overview() {
+const Overview = () => {
   const [dateRange, setDateRange] = useState([]);
   const [statusFilter, setStatusFilter] = useState("all");
+  const [campaigns, setCampaigns] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [pagination, setPagination] = useState({
+    current: 1,
+    pageSize: 6,
+    total: 0,
+  });
+  const [viewModalOpen, setViewModalOpen] = useState(false);
+  const [selectedCampaignId, setSelectedCampaignId] = useState(null);
+
+  useEffect(() => {
+    fetchCampaigns();
+  }, [pagination.current, pagination.pageSize]);
+
+  const fetchCampaigns = async (params = {}) => {
+    try {
+      setLoading(true);
+      const response = await requestsPrivate.get(LIST_CAMPAIGN_OF_ADVERTISER, {
+        params: {
+          page: params.current || pagination.current,
+          pageSize: params.pageSize || pagination.pageSize,
+          name: params.name || "",
+          status: params.status || "",
+        },
+      });
+      
+      setCampaigns(response.data.data.items);
+      setPagination({
+        ...pagination,
+        current: params.current || pagination.current,
+        pageSize: params.pageSize || pagination.pageSize,
+        total: response.data.data.totalItems || 0,
+      });
+    } catch (error) {
+      console.error("Error fetching campaigns:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const handleDateChange = (dates) => {
     setDateRange(dates);
@@ -111,49 +62,45 @@ function Overview() {
     setStatusFilter(value);
   };
 
+  const handleTableChange = (newPagination) => {
+    setPagination(newPagination);
+    fetchCampaigns(newPagination);
+  };
+
+  const handleViewDetails = (campaign) => {
+    setSelectedCampaignId(campaign.id);
+    setViewModalOpen(true);
+  };
 
   return (
     <div className={cx("content-container")}>
-      <Diagram />
-      <Card className={cx("filter-card")}>
-        <Row gutter={[16, 16]}>
-          <Col span={14} className={cx("header")}>
-            <span>List of requirements</span>
-          </Col>
-          <Col span={5} className={cx("date-range")}>
-            <span>Date Range</span>
-            <RangePicker onChange={handleDateChange} />
-          </Col>
-          <Col span={3} className={cx("select")}>
-            <span>Select Type</span>
-            <Select
-              defaultValue="all"
-              style={{ width: "100%" }}
-              onChange={handleStatusChange}
-            >
-              <Option value="all">All</Option>
-              <Option value="pending">Pending</Option>
-              <Option value="approved">Approved</Option>
-              <Option value="rejected">Rejected</Option>
-            </Select>
-          </Col>
-          <Col span={2} className={cx("button-create")}>
-              <Button
-                type="primary"
-                icon={<PlusOutlined />}
-              >
-                Create
-              </Button>
-          </Col>
-        </Row>
+     <Diagram campaigns={campaigns}/>
+
+      <Card className={cx("campaign-card")}>
+        <CampaignList
+          campaigns={campaigns}
+          loading={loading}
+          pagination={pagination}
+          onTableChange={handleTableChange}
+          onViewDetails={handleViewDetails}
+          fetchCampaigns={fetchCampaigns}
+        />
       </Card>
-      <Table dataSource={dataSource} columns={columns}  pagination={{ 
-          pageSize: 5, 
-          showSizeChanger: true,
-          pageSizeOptions: [5, 10, 20]
-        }}/>
+
+      <RequestList
+        onDateChange={handleDateChange}
+        onStatusChange={handleStatusChange}
+        onCreateClick={() => console.log("Create clicked")}
+      />
+
+      <CampaignModal
+        campaignId={selectedCampaignId}
+        visible={viewModalOpen}
+        onClose={() => setViewModalOpen(false)}
+        refreshCampaigns={fetchCampaigns}
+      />
     </div>
   );
-}
+};
 
 export default Overview;

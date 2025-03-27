@@ -1,201 +1,3 @@
-// import classNames from "classnames/bind";
-// import styles from "./HomePage.module.scss";
-// import images from "../../assets/images";
-// import Marquee from "react-fast-marquee";
-// import Header from "../../components/HeaderPublisher/Header";
-// const cx = classNames.bind(styles);
-
-// function HomePage() {
-//   const partners = [
-//     {
-//       id: 1,
-//       logo: "https://rubicmarketing.com/wp-content/uploads/2022/07/y-nghia-logo-fpt-lan-3.jpg",
-//     },
-//     {
-//       id: 2,
-//       logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQFcZylC5AC3ObQKMJSEAnKFkrXAJP-aH-ScQ&s",
-//     },
-//     {
-//       id: 3,
-//       logo: "https://1900.com.vn/storage/uploads/companies/logo/8/lg-1690877143.jpg",
-//     },
-//     {
-//       id: 4,
-//       logo: "https://cdn.tuoitre.vn/thumb_w/1200/471584752817336320/2023/2/23/62ce8018d5cacb6b28727421mb-bank-logo-1677142193380605336933.jpg",
-//     },
-//     {
-//       id: 5,
-//       logo: "https://media.licdn.com/dms/image/v2/D560BAQHAXIerkfY1BQ/company-logo_200_200/company-logo_200_200/0/1728274107129?e=2147483647&v=beta&t=VTUyCGsznNWpLSwRrfYnjdg9Rvj6qQbi-c46XzyfY9E",
-//     },
-//     {
-//       id: 6,
-//       logo: "https://bankingsummit.vn/2023/wp-content/uploads/2022/07/Cake.jpg",
-//     },
-//   ];
-
-//   return (
-//     <>
-//     <Header/>
-//       <div className={cx("container-body")}>
-//         <div className={cx("introduction")}>
-//           <div className={cx("title")}>
-//             <h2>
-//               Optimizing <span>Marketing</span> Operations and{" "}
-//               <span>Digital Transformation</span> for Businesses
-//             </h2>
-//           </div>
-//           <div className={cx("description")}>
-//             <img src={images.introduction} alt="introduction" />
-//             <div className={cx("content")}>
-//               <p>
-//                 In today’s fast-paced digital landscape, businesses must
-//                 constantly evolve to stay ahead of the competition. At
-//                 <span> AffiLinker</span>, we empower businesses to optimize
-//                 their marketing operations and embrace digital transformation
-//                 with cutting-edge solutions tailored to their unique needs.
-//               </p>
-//             </div>
-//           </div>
-//         </div>
-
-//         <div className={cx("body")}>
-//           <div className={cx("quantity")}>
-//             <span className={cx("number")}>100%</span>
-//             <span className={cx("char")}>optimize</span>
-//           </div>
-//           <div className={cx("title")}>
-//             <span>Optimize Operations</span>
-//           </div>
-
-//           <div className={cx("description")}>
-//             <div className={cx("subdescrip-one")}>
-//               <div className={cx("box")}>
-//                 <h3>LeadGen Solution</h3>
-
-//                 <p>
-//                   With <span>LeadGen</span>, you can effortlessly attract and
-//                   manage high-quality leads. This solution helps you optimize
-//                   the process of collecting customer information, thereby
-//                   increasing conversion rates and revenue.
-//                 </p>
-//               </div>
-//             </div>
-
-//             <div className={cx("subdescrip-two")}>
-//               <div className={cx("box")}>
-//                 <h3>DataInsight Solution</h3>
-//                 <p>
-//                   <span>DataInsight</span> provides powerful data analytics
-//                   tools to help you better understand customer behavior and
-//                   optimize your marketing campaigns. With{" "}
-//                   <span>DataInsight</span>, you can make data-driven decisions
-//                   accurately and timely.
-//                 </p>
-//               </div>
-//             </div>
-
-//             <div className={cx("subdescrip-three")}>
-//               <div className={cx("box")}>
-//                 <h3>AdBoost Solution</h3>
-//                 <p>
-//                   <span>AdBoost</span> is a powerful advertising tool that helps
-//                   you optimize your ad budget and achieve the best results. With{" "}
-//                   <span>AdBoost</span>, you can easily manage and monitor
-//                   advertising campaigns across multiple platforms.
-//                 </p>
-//               </div>
-//             </div>
-//           </div>
-//         </div>
-
-//         <div className={cx("container-partner")}>
-//           <div className={cx("title")}>
-//             <span>AffiLinker Partners</span>
-//           </div>
-
-//           <Marquee speed={50} gradient={false} pauseOnHover>
-//             {partners.map((partner) => (
-//               <img
-//                 key={partner.id}
-//                 src={partner.logo}
-//                 alt={`Partner ${partner.id}`}
-//                 className={cx(styles["partner-logo"])}
-//               />
-//             ))}
-//           </Marquee>
-//         </div>
-
-//         <div className={cx("container-reason")}>
-//           <div className={cx("title")}>
-//             <span>
-//               Why should you choose{" "}
-//               <span className={cx("webname")}>AffiLinker</span>?
-//             </span>
-//           </div>
-
-//           <div className={cx("group-reason")}>
-//             <div className={cx("reason")}>
-//               <div className={cx("header")}>
-//                 <i class="bi bi-cpu-fill"></i>
-//                 <span>Outstanding technology</span>
-//               </div>
-//               <p>
-//                 We pride ourselves on leveraging outstanding technology to
-//                 deliver unmatched performance and results for our partners. Our
-//                 cutting-edge solutions are designed to help you maximize your
-//                 earnings, streamline your campaigns, and stay ahead in the
-//                 competitive world of affiliate marketing.
-//               </p>
-//             </div>
-//             <div className={cx("reason")}>
-//               <div className={cx("header")}>
-//                 <i class="bi bi-person-fill"></i>
-//                 <span>Personalize the solution</span>
-//               </div>
-//               <p>
-//                 Every affiliate marketer is unique. That's why we offer
-//                 personalized technology solutions designed to meet your specific
-//                 goals and challenges. Whether you're just starting out or
-//                 looking to scale your operations, our cutting-edge tools are
-//                 here to empower your success.
-//               </p>
-//             </div>
-//             <div className={cx("reason")}>
-//               <div className={cx("header")}>
-//                 <i class="bi bi-star-fill"></i>
-//                 <span>Focus on quality</span>
-//               </div>
-//               <p>
-//                 Quality is the foundation of success. That’s why we are
-//                 committed to delivering top-tier solutions that empower you to
-//                 achieve your affiliate marketing goals with confidence. From
-//                 cutting-edge technology to unparalleled support, we ensure every
-//                 aspect of our service meets the highest standards.
-//               </p>
-//             </div>
-
-//             <div className={cx("reason")}>
-//               <div className={cx("header")}>
-//                 <i class="bi bi-award-fill"></i>
-//                 <span>Experienced expert</span>
-//               </div>
-//               <p>
-//                 We pride ourselves on having a team of seasoned experts who are
-//                 passionate about helping you succeed. With years of experience
-//                 in affiliate marketing, digital advertising, and data analytics,
-//                 our experts are here to guide you every step of the way. Whether
-//                 you're just starting out or looking to scale your campaigns, you
-//                 can count on our expertise to deliver results.
-//               </p>
-//             </div>
-//           </div>
-//         </div>
-//       </div>
-//     </>
-//   );
-// }
-
-// export default HomePage;
 
 import React, { useState } from "react";
 import classNames from "classnames/bind";
@@ -213,37 +15,38 @@ function HomePage() {
 
   const faqs = [
     {
-      question: "Why is digital marketing important for my business?",
+      question: "How does affiliate networking work?",
       answer:
-        "Digital marketing allows businesses to reach and engage with a wider audience, generate leads, drive website traffic, and increase brand visibility. It provides measurable results, allows for targeted marketing efforts, and enables businesses to adapt and optimize their strategies based on data and insights.",
+        "Affiliate networking connects publishers, advertisers, and brands in a collaborative ecosystem. Publishers earn commissions by promoting products, while advertisers expand their reach through performance-based marketing strategies.",
     },
     {
-      question:
-        "How can digital marketing help improve my website's visibility?",
+      question: "What are the benefits of joining an affiliate network?",
       answer:
-        "Digital marketing improves website visibility through SEO, content marketing, social media presence, and paid advertising campaigns.",
+        "Affiliate networks offer multiple revenue streams, access to diverse product offerings, real-time tracking, competitive commissions, and professional support to help you maximize your earning potential.",
     },
     {
-      question:
-        "How long does it take to see results from digital marketing efforts?",
+      question: "How quickly can I start earning as an affiliate?",
       answer:
-        "Results timeframe varies by strategy - PPC may show immediate results while SEO typically takes 3-6 months to see significant improvements.",
+        "With our platform, you can start earning immediately after approval. Some publishers see initial earnings within the first week, with potential for growth as you optimize your marketing strategies.",
     },
     {
-      question:
-        "How do you measure the success of digital marketing campaigns?",
+      question: "What types of products can I promote?",
       answer:
-        "We measure success through KPIs like website traffic, conversion rates, engagement metrics, and ROI calculations.",
+        "Our network offers a wide range of products across multiple industries, including technology, fashion, digital services, lifestyle products, and more. You'll find diverse opportunities to match your audience.",
     },
   ];
 
   const testimonialSlides = [
     {
       id: 1,
-      name: "Michael Kaizer",
-      text: "They thoroughly analyze our industry and target audience, allowing them to develop customized campaigns that effectively reach and engage our customers. Their creative ideas and cutting-edge techniques have helped us stay ahead of the competition.",
+      name: "Sarah Thompson",
+      text: "This affiliate network transformed my online income. The platform's intuitive tools, diverse product range, and transparent reporting have helped me grow my earnings consistently month after month.",
     },
-    // More testimonials could be added here
+    {
+      id: 2,
+      name: "Michael Chen",
+      text: "I've tried multiple affiliate platforms, but this one stands out. The support team is exceptional, and the commission rates are truly competitive. It's more than just a network—it's a partnership.",
+    }
   ];
 
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
@@ -264,20 +67,17 @@ function HomePage() {
   const blogPosts = [
     {
       color: "blue",
-      title:
-        "We are the top digital marketing agency for branding corp. We offer a full range engine...",
+      title: "Top Strategies for Maximizing Affiliate Marketing Revenue in 2024",
       readTime: "5 min read",
     },
     {
       color: "orange",
-      title:
-        "Working with this digital marketing agency has been a true partnership. They have tak...",
+      title: "Niche Selection: Finding Your Perfect Affiliate Marketing Segment",
       readTime: "5 min read",
     },
     {
       color: "purple",
-      title:
-        "What sets this digital marketing agency apart is their commitment to transparency...",
+      title: "Advanced Tracking and Analytics for Affiliate Success",
       readTime: "5 min read",
     },
   ];
@@ -290,27 +90,27 @@ function HomePage() {
           <div className={cx("hero-content")}>
             <div className={cx("hero-text")}>
               <h1 className={cx("hero-title")}>
-                Optimizing Marketing Operations
-                <span className={cx("block")}>And Digital Transformation</span>
-                <span className={cx("block")}>for Businesses</span>
+              Maximize Your Online
+              <span className={cx("block")}>Earnings with Smart</span>
+              <span className={cx("block")}>Affiliate Networking</span>
               </h1>
               <p className={cx("hero-description")}>
-                Empowering businesses to enhance efficiency, drive growth, and
-                navigate the digital landscape with cutting-edge strategies and
-                tools.
+                Connect, promote, and earn with our comprehensive affiliate platform. 
+                Unlock new revenue streams, access top-tier brands, and transform 
+                your digital marketing potential.
               </p>
               <div className={cx("cta-buttons")}>
                 <Link to="/explore" className={cx("btn", "btn-primary")}>
-                  Explore Now <span className={cx("arrow")}>→</span>
+                Join Now <span className={cx("arrow")}>→</span>
                 </Link>
                 <Link to="/case-study" className={cx("case-study-link")}>
-                  View Case Study
+                How It Works
                 </Link>
               </div>
               <div className={cx("trusted-by")}>
                 <p className={cx("trusted-text")}>
-                  Trusted by the world's <br />
-                  biggest brands
+                Trusted by top <br />
+                Content Creators
                 </p>
                 <div className={cx("brand-logos")}>
                   <img
@@ -334,20 +134,20 @@ function HomePage() {
             <div className={cx("hero-graphics")}>
               <div className={cx("stats-card")}>
                 <h2 className={cx("stats-number")}>
-                  230<span className={cx("plus")}>+</span>
+                  10K<span className={cx("plus")}>+</span>
                 </h2>
                 <p className={cx("stats-description")}>
-                  some big companies that we work with, and trust us very much
+                Active Affiliates Generating Revenue Daily
                 </p>
               </div>
               <div className={cx("chart-card")}>
                 <p className={cx("chart-label")}>
-                  Drive More Traffic and Sales
+                Boost Your Affiliate Income
                 </p>
                 <h3 className={cx("chart-title")}>
-                  Drive more traffic
+                Maximize Earnings
                   <br />
-                  and product sales
+                  With Smart Strategies
                 </h3>
                 <div className={cx("chart-graphic")}>
                   {/* Chart bars would be here */}
@@ -364,25 +164,24 @@ function HomePage() {
           <div className={cx("services-content")}>
             <div className={cx("services-text")}>
               <h2 className={cx("services-title")}>
-                Provide the best service with
+              Innovative Affiliate
                 <br />
-                out of the box ideas
+                Marketing Solutions
               </h2>
               <p className={cx("services-description")}>
-                we are a passionate team of digital marketing enthusiasts
-                dedicated to helping businesses succeed in the digital world.
-                With years of experience and a deep understanding of the
-                ever-evolving online landscape, we stay at the forefront of
-                industry trends and technologies.
+                We provide cutting-edge affiliate networking tools that empower 
+                content creators, bloggers, and digital marketers to monetize 
+                their online presence. Our platform offers advanced tracking, 
+                real-time insights, and diverse partnership opportunities.
               </p>
             </div>
             <div className={cx("services-cards")}>
               <div className={cx("projects-card")}>
                 <h2 className={cx("projects-number")}>
-                  920<span className={cx("plus")}>+</span>
+                  500<span className={cx("plus")}>+</span>
                 </h2>
                 <p className={cx("projects-text")}>
-                  Project finish with superbly
+                Brands and Advertisers Connected
                 </p>
                 <div className={cx("team-avatars")}>
                   <div className={cx("avatar")}></div>
@@ -393,7 +192,7 @@ function HomePage() {
                 </div>
               </div>
               <div className={cx("work-card")}>
-                <h3 className={cx("work-title")}>HOW WE WORK</h3>
+                <h3 className={cx("work-title")}>PARTNER PROGRAM</h3>
                 <div className={cx("play-button")}>
                   <span className={cx("play-icon")}></span>
                 </div>
@@ -436,7 +235,6 @@ function HomePage() {
         </div>
       </section>
 
-      {/* FAQ Section */}
       <section className={cx("faq-section")}>
         <div className={cx("faq-container")}>
           <div className={cx("faq-header")}>
@@ -484,7 +282,6 @@ function HomePage() {
         </div>
       </section>
 
-      {/* Affiliate Marketing Section */}
       <section className={cx("affiliate-section")}>
         <div className={cx("affiliate-container")}>
           <div className={cx("affiliate-header")}>
@@ -518,3 +315,7 @@ function HomePage() {
 }
 
 export default HomePage;
+
+
+
+

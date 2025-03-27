@@ -1,259 +1,399 @@
+// Main container styles
 .campaign-management {
-    width: 100%;
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 20px;
-    font-family: 'Inter', sans-serif;
-    
-    h1, h2 {
-      color: #333;
-      margin-bottom: 20px;
-    }
+  background: #f8fafc;
+  padding: 24px;
+  border-radius: 12px;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+// Top section with title and search
+.top-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+
+  h1 {
+    color: #1f2937;
+    font-size: 1.875rem;
+    margin: 0;
+    font-weight: 700;
+    letter-spacing: -0.025em;
   }
-  
-  .top-section {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 25px;
-    
-    h1 {
-      font-size: 28px;
-      font-weight: 600;
-      margin: 0;
-    }
-  }
-  
-  .actions {
-    display: flex;
-    gap: 20px;
-  }
-  
-  .search-filter {
-    display: flex;
-    gap: 10px;
-  }
-  
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.search-filter {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
   .search-input {
-    padding: 10px 15px;
-    border-radius: 6px;
-    border: 1px solid #ddd;
-    width: 250px;
-    font-size: 14px;
-    
-    &:focus {
-      outline: none;
-      border-color: #4a89dc;
-      box-shadow: 0 0 0 2px rgba(74, 137, 220, 0.2);
-    }
-  }
-  
-  .status-filter {
-    padding: 10px 15px;
-    border-radius: 6px;
-    border: 1px solid #ddd;
-    background-color: white;
-    font-size: 14px;
-    cursor: pointer;
-    
-    &:focus {
-      outline: none;
-      border-color: #4a89dc;
-    }
-  }
-  
-  .add-button {
-    background-color: #4a89dc;
-    color: white;
-    border: none;
-    border-radius: 6px;
-    padding: 10px 20px;
-    font-size: 14px;
-    font-weight: 500;
-    cursor: pointer;
-    transition: background-color 0.2s;
-    
-    &:hover {
-      background-color: #3b78cc;
-    }
-  }
-  
-  .form-container {
-    background-color: white;
+    padding: 10px 16px;
+    border: 1px solid #e5e7eb;
     border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    padding: 25px;
-    margin-bottom: 30px;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    width: 280px;
+    background-color: white;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+
+    &:focus {
+      outline: none;
+      border-color: #3b82f6;
+      box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+    }
   }
-  
-  .campaign-form {
-    width: 100%;
-  }
-  
-  .form-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
+}
+
+// Campaigns list section
+.campaigns-list {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  padding: 24px;
+
+  h2 {
+    color: #1f2937;
     margin-bottom: 20px;
-    
-    @media (min-width: 992px) {
-      grid-template-columns: repeat(4, 1fr);
-    }
+    font-size: 1.25rem;
+    font-weight: 600;
   }
-  
-  .form-group {
-    margin-bottom: 15px;
-    
-    label {
-      display: block;
-      margin-bottom: 6px;
-      font-size: 14px;
-      font-weight: 500;
-      color: #444;
-    }
-    
-    input, select, textarea {
-      display: block;
-      width: 100%;
-      padding: 10px 12px;
-      border-radius: 6px;
-      border: 1px solid #ddd;
-      font-size: 14px;
-      
-      &:focus {
-        outline: none;
-        border-color: #4a89dc;
-        box-shadow: 0 0 0 2px rgba(74, 137, 220, 0.2);
-      }
-    }
-    
-    textarea {
-      resize: vertical;
-      min-height: 100px;
-    }
-  }
-  
-  .full-width {
-    grid-column: 1 / -1;
-  }
-  
-  .form-actions {
-    display: flex;
-    justify-content: flex-end;
-    gap: 15px;
-    margin-top: 25px;
-    
-    button {
-      padding: 10px 20px;
-      border-radius: 6px;
-      font-size: 14px;
-      font-weight: 500;
-      cursor: pointer;
-      transition: all 0.2s;
-    }
-  }
-  
-  .cancel-button {
-    background-color: white;
-    border: 1px solid #ddd;
-    color: #666;
-    
+}
+
+// Error message
+.error {
+  padding: 16px;
+  background-color: #fee2e2;
+  color: #b91c1c;
+  border-radius: 8px;
+  margin-bottom: 16px;
+  font-weight: 500;
+}
+
+// Action buttons in table
+.actions-cell {
+  display: flex;
+  gap: 8px;
+}
+
+.action-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+
+  &.view-button {
+    background-color: #f3f4f6;
+    color: #4b5563;
+
     &:hover {
-      background-color: #f5f5f5;
-      border-color: #ccc;
+      background-color: #e5e7eb;
+      color: #1f2937;
     }
   }
-  
-  .submit-button {
-    background-color: #4a89dc;
-    border: none;
-    color: white;
-    
-    &:hover {
-      background-color: #3b78cc;
-    }
-  }
-  
-  .campaigns-list {
-    background-color: white;
+}
+
+// Custom styles for Ant Design Table
+:global {
+  .ant-table {
     border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    padding: 25px;
+    overflow: hidden;
+  }
+
+  .ant-table-thead > tr > th {
+    background-color: #f9fafb;
+    color: #4b5563;
+    font-weight: 600;
+    padding: 16px;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .ant-table-tbody > tr > td {
+    padding: 16px;
+    color: #1f2937;
+  }
+
+  .ant-table-tbody > tr:hover > td {
+    background-color: #f3f4f6;
+  }
+
+  .ant-pagination {
+    margin-top: 24px;
+  }
+
+  .ant-pagination-item-active {
+    border-color: #3b82f6;
     
-    h2 {
-      font-size: 18px;
-      font-weight: 600;
-      margin-bottom: 20px;
+    a {
+      color: #3b82f6;
     }
   }
-  
-  .campaigns-table {
-    width: 100%;
-    border-collapse: collapse;
-    
-    th, td {
-      padding: 12px 15px;
-      text-align: left;
-      border-bottom: 1px solid #eee;
-      font-size: 14px;
-    }
-    
-    th {
-      font-weight: 600;
-      color: #444;
-      background-color: #f9fafb;
-    }
-    
-    tr {
-      &:hover {
-        background-color: #f9fafb;
-      }
-    }
-    
-    .campaign-row {
-      &.inactive {
-        background-color: #f9f9f9;
-        color: #777;
-      }
-    }
-  }
-  
-  .status-badge {
-    display: inline-block;
-    padding: 4px 10px;
-    border-radius: 12px;
+
+  .ant-tag {
+    border-radius: 4px;
+    padding: 2px 8px;
     font-size: 12px;
     font-weight: 500;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    
-    &.active {
-      background-color: #e1f5ea;
-      color: #0d945f;
+  }
+
+  .ant-spin-nested-loading {
+    width: 100%;
+  }
+
+  .ant-spin-container {
+    transition: opacity 0.3s;
+  }
+
+  .ant-spin-dot-item {
+    background-color: #3b82f6;
+  }
+}
+
+// Modal override styles
+.modal-override {
+  :global {
+    // Modal header
+    .ant-modal-header {
+      padding: 20px 24px;
+      border-bottom: 1px solid #f3f4f6;
+      border-radius: 12px 12px 0 0;
     }
-    
-    &.inactive {
-      background-color: #f5e9ef;
-      color: #c7254e;
+
+    .ant-modal-title {
+      color: #1f2937;
     }
-    
-    &.pending {
-      background-color: #fef4e6;
-      color: #d97706;
+
+    // Modal content
+    .ant-modal-content {
+      border-radius: 12px;
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+      overflow: hidden;
+    }
+
+    .ant-modal-body {
+      padding: 24px;
+      max-height: calc(90vh - 150px);
+      overflow-y: auto;
+
+      // Scrollbar styling
+      &::-webkit-scrollbar {
+        width: 8px;
+      }
+
+      &::-webkit-scrollbar-track {
+        background: #f1f1f1;
+        border-radius: 4px;
+      }
+
+      &::-webkit-scrollbar-thumb {
+        background: #d1d5db;
+        border-radius: 4px;
+      }
+
+      &::-webkit-scrollbar-thumb:hover {
+        background: #9ca3af;
+      }
+    }
+
+    // Modal footer
+    .ant-modal-footer {
+      padding: 16px 24px;
+      border-top: 1px solid #f3f4f6;
+      border-radius: 0 0 12px 12px;
+      background-color: #f9fafb;
+
+      .ant-btn {
+        height: 40px;
+        padding: 0 20px;
+        font-weight: 500;
+        border-radius: 8px;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+      }
+
+      .ant-btn-primary {
+        background-color: #10b981;
+        border-color: #10b981;
+
+        &:hover {
+          background-color: #059669;
+          border-color: #059669;
+        }
+      }
+
+      .ant-btn-dangerous {
+        background-color: white;
+        border-color: #ef4444;
+        color: #ef4444;
+
+        &:hover {
+          background-color: #fef2f2;
+          color: #dc2626;
+          border-color: #dc2626;
+        }
+      }
+    }
+
+    // Descriptions component
+    .ant-descriptions {
+      margin-bottom: 24px;
+
+      .ant-descriptions-item-label {
+        color: #6b7280;
+        font-weight: 500;
+        background-color: #f9fafb;
+        padding: 12px 16px;
+      }
+
+      .ant-descriptions-item-content {
+        padding: 12px 16px;
+      }
+    }
+
+    // Divider
+    .ant-divider {
+      margin: 24px 0;
+      border-color: #e5e7eb;
+    }
+
+    // Image
+    .ant-image {
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    }
+
+    // Content sections
+    h3 {
+      color: #374151;
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+
+    // Content boxes
+    div[style*="backgroundColor: #fafafa"] {
+      background-color: #f9fafb !important;
+      padding: 16px !important;
+      border-radius: 8px !important;
+      border: 1px solid #e5e7eb !important;
+      color: #4b5563;
+      font-size: 14px;
+      line-height: 1.6;
+      white-space: pre-line;
+    }
+
+    // Tags
+    .ant-tag-blue {
+      background-color: #eff6ff;
+      border-color: #bfdbfe;
+      color: #3b82f6;
+    }
+
+    .ant-tag-orange {
+      background-color: #fff7ed;
+      border-color: #fed7aa;
+      color: #f97316;
+    }
+
+    // Links
+    a {
+      color: #3b82f6;
+      text-decoration: none;
+      transition: color 0.2s;
+
+      &:hover {
+        color: #2563eb;
+        text-decoration: underline;
+      }
     }
   }
-  
-  .actions-cell {
-    white-space: nowrap;
-    
-    button {
-      margin-right: 8px;
-      padding: 6px 12px;
-      border-radius: 4px;
-      font-size: 12px;
-      font-weight: 500;
-      border: none;
-      cursor: pointer;
-      transition: background-color 0.2s;
-    }
 }
+
+// Responsive adjustments
+@media (max-width: 768px) {
+  .top-section {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+  .search-filter .search-input {
+    width: 100%;
+  }
+
+  :global {
+    .ant-modal {
+      max-width: calc(100vw - 32px);
+      margin: 0 16px;
+    }
+
+    .ant-descriptions-bordered .ant-descriptions-item-label,
+    .ant-descriptions-bordered .ant-descriptions-item-content {
+      padding: 8px 12px;
+    }
+  }
+}
+
+// Dark mode support
+@media (prefers-color-scheme: dark) {
+  .modal-override {
+    :global {
+      .ant-modal-content {
+        background-color: #1f2937;
+      }
+
+      .ant-modal-header {
+        background-color: #1f2937;
+        border-bottom-color: #374151;
+      }
+
+      .ant-modal-title {
+        color: #f9fafb;
+      }
+
+      .ant-modal-footer {
+        background-color: #1f2937;
+        border-top-color: #374151;
+      }
+
+      .ant-descriptions-item-label {
+        background-color: #374151;
+        color: #e5e7eb;
+      }
+
+      .ant-descriptions-item-content {
+        background-color: #1f2937;
+        color: #f9fafb;
+      }
+
+      div[style*="backgroundColor: #fafafa"] {
+        background-color: #374151 !important;
+        border-color: #4b5563 !important;
+        color: #e5e7eb;
+      }
+
+      h3 {
+        color: #f3f4f6;
+      }
+
+      .ant-divider {
+        border-color: #4b5563;
+      }
+    }
+  }
+}
+
