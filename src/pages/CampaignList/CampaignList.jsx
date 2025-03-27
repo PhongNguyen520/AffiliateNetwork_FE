@@ -17,6 +17,8 @@ import {
 } from "lucide-react";
 import { Link } from "react-router-dom";
 import { requestsPrivate } from "../../utils/requests";
+import { LoadingOutlined } from "@ant-design/icons";
+import { Spin } from "antd";
 
 const cx = classNames.bind(styles);
 
@@ -60,6 +62,9 @@ function CampaignList() {
     hasNextPage: false,
     hasPreviousPage: false,
   });
+
+  const antIcon = <LoadingOutlined style={{ fontSize: 48, color: "#1890ff" }} spin />;
+const [loading, setLoading] = useState(false);
   const [filter, setFilter] = useState({
     category: "All",
     payoutMethodId: "All",
@@ -114,13 +119,15 @@ function CampaignList() {
           pageIndex: 1,
           pageSize: 10, 
         };
-
+        setLoading(true); 
         const response = await requestsPrivate.get(CAMPAIGN_LIST_URL, { params });
         if (response.data && response.data.data) {
           setAllCampaigns(response.data.data.items);
         }
       } catch (error) {
         console.error("Error fetching all campaigns:", error);
+       } finally {
+        setLoading(false);
       }
     };
 
@@ -223,8 +230,14 @@ function CampaignList() {
   };
 
   return (
+    <div>
     <div className={cx("page-wrapper")}>
       <Header />
+        {loading && (
+        <div className={cx("loading-overlay")}>
+          <Spin indicator={antIcon} className={cx("loading-spinner")} />
+        </div>
+      )}
       <div className={cx("container-campaign")}>
         <div className={cx("container-section")}>
           <section className={cx("events-section")}>
@@ -415,6 +428,7 @@ function CampaignList() {
           )}
         </section>
       </div>
+    </div>
     </div>
   );
 }
