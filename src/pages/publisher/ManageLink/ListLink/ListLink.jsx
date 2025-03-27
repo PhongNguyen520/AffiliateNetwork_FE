@@ -1,11 +1,12 @@
 "use client"
 
 import { useEffect, useState } from "react"
-import { useLocation } from "react-router-dom"
+import { Link, useLocation } from "react-router-dom"
 import classNames from "classnames/bind"
 import { requestsPrivate } from "../../../../utils/requests"
-import { Copy, ExternalLink, ChevronLeft, ChevronRight } from 'lucide-react'
+import { Copy, ExternalLink, ChevronLeft, ChevronRight, Eye } from 'lucide-react'
 import styles from "./ListLink.module.scss"
+import config from "../../../../config"
 
 const cx = classNames.bind(styles)
 
@@ -213,6 +214,14 @@ function ListLink() {
                   <div className={cx("link-card-header")}>
                     <span className={cx("link-status", link.status.toLowerCase())}>{link.status}</span>
                     <div className={cx("link-actions")}>
+                       <Link
+                        key={link.id} to={`/conversion-detail/${link.id}`}
+                        state={{ key: link.id }}
+                        className={cx("detail-button")}
+                        title="View conversions"
+                      >
+                        <Eye size={16}/>
+                      </Link>
                       <button
                         className={cx("copy-button")}
                         onClick={() => handleCopyLink(link.shortenUrl)}

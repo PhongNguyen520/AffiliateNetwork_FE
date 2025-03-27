@@ -227,7 +227,7 @@
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    background-color: #2563eb;
+    background-color: #E06A00;
     color: white;
     padding: 0.75rem 1.5rem;
     border: none;
@@ -484,4 +484,41 @@
       transform: translateY(0);
     }
   }
+}
+
+
+.preview-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+.upload-box {
+  position: relative;
+  overflow: hidden;
+}
+
+.upload-label {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  width: 100%;
+  height: 100%;
+}
+
+.custom-spin .ant-spin-dot-item {
+  background-color: #1890ff; 
+}
+
+.error-message {
+  color: #ff4d4f;
+  font-size: 12px;
+  margin-top: 4px;
+}
+
+.input-field.error {
+  border-color: #ff4d4f;
 }

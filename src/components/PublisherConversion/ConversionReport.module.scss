@@ -1,85 +1,142 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap');
+
+$primary-color: #3b82f6;
+$secondary-color: #10b981;
+$text-color: #1f2937;
+$border-color: #e5e7eb;
+$background-color: #f9fafb;
+
 .container {
-    background: #fff;
-    padding: 15px;
+    font-family: 'Inter', sans-serif;
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    padding: 24px;
+    margin: 0 auto;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+
+    h2 {
+        color: $text-color;
+        font-size: 1.5rem;
+        font-weight: 600;
+        margin: 0;
+    }
+
+    .headerStats {
+        background-color: $background-color;
+        padding: 8px 16px;
+        border-radius: 8px;
+        font-weight: 500;
+        color: $text-color;
+    }
+}
+
+.tableWrapper {
+    overflow-x: auto;
     border-radius: 8px;
-    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
-    margin-top: 20px;
-    overflow-x: auto; 
-  }
-  
-  .table {
+    border: 1px solid $border-color;
+}
+
+.table {
     width: 100%;
-    border-collapse: collapse;
-    font-size: 12px; 
-    min-width: 800px;
-  }
-  
-  th, td {
-    padding: 8px;
-    text-align: left;
-    border-bottom: 1px solid #ddd;
-    white-space: nowrap; 
-    overflow: visible; 
-  }
-  
-  th {
-    background: #f8f8f8;
-    font-weight: bold;
-    text-transform: uppercase;
-    color: #333;
-  }
-  
-  tr:hover {
-    background: #f9f9f9;
-  }
-  
+    border-collapse: separate;
+    border-spacing: 0;
 
-  .status {
-    padding: 4px 8px;
-    border-radius: 5px;
-    font-weight: bold;
-    text-align: center;
-    display: inline-block;
-  }
-  
-  .approved {
-    background: #d4edda;
-    color: #155724;
-  }
-  
-  .pending {
-    background: #fff3cd;
-    color: #856404;
-  }
-  
-  .rejected {
-    background: #f8d7da;
-    color: #721c24;
-  }
-  
+    thead {
+        background-color: $background-color;
+    }
 
-  .totalRow {
-    margin-top: 10px;
-    font-size: 14px;
-    font-weight: bold;
-    text-align: right;
-  }
- 
+    th, td {
+        padding: 12px 16px;
+        text-align: left;
+        border-bottom: 1px solid $border-color;
+        white-space: nowrap;
+    }
+
+    th {
+        font-weight: 600;
+        color: $text-color;
+        text-transform: uppercase;
+        font-size: 0.75rem;
+    }
+
+    tbody {
+        tr {
+            transition: background-color 0.2s;
+
+            &:hover {
+                background-color: $background-color;
+            }
+        }
+    }
+
+    .statusBadge {
+        padding: 4px 8px;
+        border-radius: 4px;
+        font-size: 0.75rem;
+        font-weight: 500;
+        text-transform: uppercase;
+
+        &.approved {
+            background-color: rgba($secondary-color, 0.1);
+            color: darken($secondary-color, 10%);
+        }
+
+        &.pending {
+            background-color: rgba($primary-color, 0.1);
+            color: darken($primary-color, 10%);
+        }
+
+        &.rejected {
+            background-color: rgba(#ef4444, 0.1);
+            color: darken(#ef4444, 10%);
+        }
+    }
+}
+
 .pagination {
     display: flex;
-    justify-content: flex-end;
+    justify-content: center;
+    align-items: center;
     margin-top: 20px;
-  }
-  
-  .pagination button {
-    background: none; 
-    border: none;
-    padding: 8px 12px;
-    cursor: pointer;
-    font-size: 16px;
-  }
-  
-  .pagination .active {
-    font-weight: bold;
-    color: rgb(25, 25, 29); 
-  }
+    gap: 8px;
+
+    .pageBtn {
+        background-color: white;
+        border: 1px solid $border-color;
+        color: $text-color;
+        padding: 8px 12px;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: all 0.2s;
+
+        &:hover {
+            background-color: $background-color;
+        }
+
+        &.active {
+            background-color: $primary-color;
+            color: white;
+            border-color: $primary-color;
+        }
+    }
+}
+
+// Responsive adjustments
+@media screen and (max-width: 768px) {
+    .container {
+        padding: 16px;
+    }
+
+    .header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+    }
+}

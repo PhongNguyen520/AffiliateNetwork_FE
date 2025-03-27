@@ -11,6 +11,7 @@ import TrafficReport from "../pages/publisher/TrafficReport/TrafficReport";
 import ManageLink from "../pages/publisher/ManageLink/ManageLink";
 import ListLink from "../pages/publisher/ManageLink/ListLink/ListLink";
 import Conversion from "../pages/publisher/Conversion/Conversion";
+import ConversionDetail from "../pages/publisher/ConversionDetail/ConversionDetail";
 
 export const publisherRoutes = [
   { path: config.routes.overviewPublisher, component: PublisherOverview, layout: PublisherLayout },
@@ -24,4 +25,5 @@ export const publisherRoutes = [
   { path: config.routes.manageLink, component: ManageLink, layout: PublisherLayout },
   { path: config.routes.linkOfCampaign, component: ListLink, layout: PublisherLayout },
   { path: config.routes.publisherConversion, component: Conversion, layout: PublisherLayout },
+  { path: config.routes.conversionDetail, component: ConversionDetail, layout: PublisherLayout },
 ];
